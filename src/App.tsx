@@ -1,18 +1,15 @@
-import {useState} from 'react'
-import './App.css'
+import Navbar from "./components/Navbar/Navbar.tsx";
+import Hero from "./components/Hero/Hero.tsx";
+import VenueSlider from "./components/VenueSlider/VenueSlider.tsx";
 
 function App() {
-    const [count, setCount] = useState(0)
 
     return (
-
-        <button
-            className="counter"
-            onClick={() => setCount((count) => count + 1)}
-        >
-            Count is {count}
-        </button>
-
+        <>
+            <Navbar/>
+            <Hero/>
+            <VenueSlider/>
+        </>
     )
 }
 

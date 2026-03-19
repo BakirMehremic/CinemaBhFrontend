@@ -1,0 +1,38 @@
+.slider {
+    display: flex;
+    overflow: hidden;
+    background-color: #FCFCFD;
+    padding: 2rem 0;
+    border-top: 0.0625rem solid #667085;
+    border-bottom: 0.0625rem solid #667085;
+}
+
+.sliderContent {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 50s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.sliderItem {
+    font-family: "Urbanist", sans-serif;
+    color: #98A2B3;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: 0.0625rem solid #98A2B3;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-50% - 1.5rem));
+    }
+}
