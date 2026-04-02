@@ -1,0 +1,108 @@
+.imageContainer {
+    position: relative;
+    overflow: hidden;
+    height: 730px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottomRects {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 2vw;
+    justify-content: center;
+}
+
+.rect {
+    width: 5vw;
+    max-width: 30px;
+    height: 0.8vw;
+    max-height: 4px;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+.rectActive {
+    composes: rect;
+    background-color: #F9FAFB;
+}
+
+.rectInactive {
+    composes: rect;
+    background-color: #98A2B3;
+}
+
+.overlayContent {
+    position: absolute;
+    bottom: 15%;
+    left: 92px;
+    color: #FCFCFD;
+}
+.genreContainer {
+    width: fit-content;
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 400;
+    padding: 6px 8px;
+    border-radius: 8px;
+
+    background: #E4E7EC;
+    margin-bottom: 12px;
+    color: #344054;
+}
+
+.textContent h1 {
+    font-size: 48px;
+    line-height: 56px;
+    margin: 16px 0 16px 0;
+    letter-spacing: -0.5%;
+}
+
+.textContent h6 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    letter-spacing: -0.15%;
+    margin: 0 0 32px 0;
+    opacity: 0.9;
+    max-width: 60%;
+}
+
+.buyTicketButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+
+    background-color: #B22222;
+    color: #FAFAFA;
+    border: none;
+    cursor: pointer;
+
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.005em;
+
+    width: 114px;
+    min-width: 7rem;
+    height: 48px;
+
+    white-space: nowrap;
+    overflow: hidden;
+}

@@ -1,0 +1,46 @@
+.card {
+    flex: 0 0 auto;
+    width: 21vw;
+    height: 27.44vw;
+    background: #fff;
+    border: 1px solid #E4E7EC;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px -1px #34405414;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.image {
+    width: 18.75vw;
+    height: 19.94vw;
+    border-radius: 1rem;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 1.12vw;
+}
+
+.title {
+    font-size: 1.38vw;
+    line-height: 1.66vw;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    color:#1D2939;
+}
+
+.venueSubtitle {
+    color: #667085;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 1.25%;
+    text-align: center;
+}

@@ -1,0 +1,142 @@
+.textSection {
+    margin-top: 3.12vw;
+    text-align: center;
+}
+
+.textSection .heading {
+    font-weight: 700;
+    font-size: 2.22vw;
+    letter-spacing: -0.25%;
+    line-height: 2.78vw;
+}
+
+.textSection .paragraphBox {
+    width: 43.88vw;
+    margin: 2.22vw auto 0 auto;
+    font-weight: 400;
+    font-size: 1.11vw;
+    line-height: 1.66vw;
+    letter-spacing: 0.5%;
+    text-align: center;
+}
+
+.cardsContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6.38vw;
+    margin-top: 2rem;
+    margin-bottom: 6.66vw;
+    color:#1D2939;
+}
+
+.smallCard, .bigCard {
+    border: 1px solid #E4E7EC;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.smallCard {
+    width: 28.33vw;
+    height: 39.16vw;
+    margin-top: 2.78vw;
+    padding-top:2.22vw;
+}
+
+.bigCard {
+    width: 28.33vw;
+    height: 44.72vw;
+    margin: 0 1.11vw;
+    padding-top: 5vw;
+}
+
+.cardTitle {
+    font-size: 1.38vw;
+    line-height: 1.66vw;
+    font-weight: 700;
+    letter-spacing: -0.15%;
+    margin-bottom: 1.66vw;
+}
+
+.smallCardPrice {
+    margin-top: 0;
+    font-size: 2.22vw;
+    font-weight: 700;
+    line-height: 2.78vw;
+    margin-bottom: 0;
+}
+
+.bigCardPrice {
+    composes: smallCardPrice;
+    color: #B22222;
+}
+
+.perTicket {
+    font-weight: 400;
+    font-size: 1.11vw;
+    line-height: 1.7vw;
+    letter-spacing: 0.5%;
+    margin-bottom: 2.22vw;
+}
+
+.smallCardButton {
+    border: 1px #B22222 solid;
+    border-radius: 8px;
+    width: 10.34vw;
+    height: 3.33vw;
+    background-color: transparent;
+    padding:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4.72vw;
+}
+
+.smallCardButtonText {
+    color:#B22222;
+    font-weight: 500;
+    font-size: 1.11vw;
+    line-height: 1.68vw;
+    margin: 0.83vw 1.36vw;
+    white-space: nowrap;
+}
+
+.bigCardButton {
+    composes: smallCardButton;
+    background-color: #B22222;
+}
+
+.bigCardButtonText {
+    composes: smallCardButtonText;
+    color: #FCFCFD;
+}
+
+.bulletPoint {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1D2939;
+    padding-left: 1.68vw;
+    width: 100%;
+    font-weight: 400;
+    font-size: 1.11vw;
+    margin-bottom: 1.68vw;
+    margin-top:0
+}
+
+.bulletPoint::before {
+    content: "✓";
+    color: #B22222;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 1.11vw;
+}
+
+.bulletPointsContainer {
+    width: 100%;
+}
+
+.bulletPoint:last-child {
+    margin-bottom: 0;
+}

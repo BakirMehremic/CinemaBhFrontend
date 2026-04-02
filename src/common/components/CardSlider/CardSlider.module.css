@@ -1,0 +1,32 @@
+.sliderSection {
+    height: 42.8vw;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 0 6.36vw;
+}
+
+.sliderContainer {
+    display: flex;
+    gap: 1.11vw;
+    flex-wrap: nowrap;
+}
+
+.sliderInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.sliderHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.22vw;
+}
+
+.sliderSection {
+    padding: 0 6.36vw;
+}
