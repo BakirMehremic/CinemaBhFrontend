@@ -1,0 +1,19 @@
+.arrowButton {
+    width: 3.33vw;
+    height: 3.33vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.83vw;
+    gap: 0.28vw;
+
+    background: #FFFFFF;
+    border: 1px solid #E4E7EC;
+    border-radius: 0.55vw;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 1.11vw;
+}

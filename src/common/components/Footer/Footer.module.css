@@ -1,0 +1,55 @@
+.footer {
+    height: 13.25em;
+    background: linear-gradient(
+            267.88deg,
+            rgba(178, 34, 34, 0.8) 0%,
+            rgba(26, 26, 26, 0.8) 100%
+    ),
+    #B22222;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Urbanist', sans-serif;
+    color: #FCFCFD;
+}
+
+.logo {
+    width: 8.12em;
+    height: 2em;
+    margin-bottom: 1em
+}
+
+.links {
+    display: flex;
+    gap: 0
+}
+
+.links a {
+    font-weight: 700;
+    font-size: 0.74em;
+    line-height: 1em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    color: #FCFCFD;
+    text-decoration: none;
+}
+
+.footer p {
+    font-weight: 400;
+    font-size: 0.88em;
+    line-height: 1.25em;
+    margin-top: 1em
+}
+
+.divider {
+    width: 1px;
+    height: 1em;
+    background-color: #ffffff;
+    margin: 0 1em;
+    position: relative;
+    top:-0.15em;
+}

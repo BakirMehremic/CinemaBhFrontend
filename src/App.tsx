@@ -1,8 +1,22 @@
-function App() {
+import Navbar from "./common/components/Navbar/Navbar";
+import HomePage from "./pages/HomePage/HomePage";
+import Footer from "./common/components/Footer/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AboutUs from "./pages/AboutUs/AboutUs";
+import Pricing from "./pages/Pricing/Pricing";
 
-    return (
-        <h1>Hello world</h1>
-    )
+function App() {
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/pricing" element={<Pricing />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
