@@ -1,12 +1,16 @@
 import styles from "./CardSlider.module.css";
 import CardSliderPagination from "../CardSliderPagination/CardSliderPagination.tsx";
 import CardSliderHeader from "../CardSliderHeader/CardSliderHeader.tsx";
-import type { CardItem, CardSliderProps } from "../../types/cardSliderTypes.ts";
+import type { CardItem, CardSliderProps } from "./types/cardSliderTypes.ts";
 import Card from "../Card/Card.tsx";
 import { useState } from "react";
-import { usePaginatedData } from "../../hooks/usePreviewsPaginated.ts";
+import usePaginatedData from "../../hooks/usePreviewsPaginated.ts";
 
-export function CardSlider({ title, seeAllLink, type }: CardSliderProps) {
+export default function CardSlider({
+  title,
+  seeAllLink,
+  type,
+}: CardSliderProps) {
   const [pageNumber, setPageNumber] = useState(0);
   const pageSize = 4;
 
@@ -49,7 +53,6 @@ export function CardSlider({ title, seeAllLink, type }: CardSliderProps) {
           ))}
         </div>
         <CardSliderPagination
-          currentPage={pageNumber}
           totalPages={data.total_pages}
           totalElements={data.total_elements}
           elementCount={data.content.length}

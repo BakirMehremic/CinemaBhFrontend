@@ -5,14 +5,3 @@ export type PaginatedResponse<T> = {
   total_pages: number;
   content: T[];
 };
-
-export type PaginationProps = {
-  currentPage: number;
-  totalPages: number;
-  totalElements: number;
-  elementCount: number;
-  pageNumber: number;
-  pageSize: number;
-  onNextPage: () => void;
-  onPrevPage: () => void;
-};

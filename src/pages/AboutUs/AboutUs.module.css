@@ -26,10 +26,10 @@
     line-height: 2.22vw;
     letter-spacing: -0.0015em;
     margin: 0 0 0.5rem 0;
-    color: #1D2939;
+    color: var(--dark-blue);
 }
 
-.abutUs h1 {
+.aboutUs h1 {
     position: absolute;
     top: 5.55vw;
     left: 35.8vw;
@@ -38,11 +38,13 @@
     font-size: 4.44vw;
     line-height: 5.14vw;
     letter-spacing: 1%;
-    color: #1D2939;
+    color: var(--dark-blue);
     white-space: nowrap;
 }
 
 .aboutUsText {
+    display: grid;
+    gap:0.2vw;
     font-weight: 400;
     position: absolute;
     top: 12vw;
@@ -51,8 +53,11 @@
     font-size: 1.12vw;
     line-height: 1.8vw;
     margin-top:2.22vw;
-    color: #667085;
     text-align: left;
-    white-space: normal;
     width: 58vw;
+    color: var(--dark-blue);
+}
+
+.aboutUsText p {
+    margin: 0;
 }

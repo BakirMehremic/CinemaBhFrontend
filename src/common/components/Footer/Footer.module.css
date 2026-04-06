@@ -5,15 +5,14 @@
             rgba(178, 34, 34, 0.8) 0%,
             rgba(26, 26, 26, 0.8) 100%
     ),
-    #B22222;
+    var(--dark-red);
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    font-family: 'Urbanist', sans-serif;
-    color: #FCFCFD;
+    color: var(--custom-white);
 }
 
 .logo {
@@ -34,7 +33,7 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
 
-    color: #FCFCFD;
+    color: var(--custom-white);
     text-decoration: none;
 }
 

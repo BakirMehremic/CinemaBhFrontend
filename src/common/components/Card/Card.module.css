@@ -3,7 +3,7 @@
     width: 21vw;
     height: 27.44vw;
     background: #fff;
-    border: 1px solid #E4E7EC;
+    border: 1px solid var(--light--gray);
     border-radius: 1.5rem;
     box-shadow: 0 4px 6px -1px #34405414;
     display: flex;
@@ -34,13 +34,13 @@
     font-weight: 600;
     text-align: center;
     margin: 0;
-    color:#1D2939;
+    color: var(--dark-blue);
 }
 
 .venueSubtitle {
     color: #667085;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.98vw;
+    line-height: 1.38vw;
     letter-spacing: 1.25%;
     text-align: center;
 }

@@ -2,7 +2,7 @@
     margin-top:1.66vw;
     font-weight: 400;
     font-size: 1.125vw;
-    color:#1D2939;
+    color:var(--dark-blue);
     display: flex;
     justify-content: flex-end;
 }

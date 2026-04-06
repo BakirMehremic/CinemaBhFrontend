@@ -1,5 +1,6 @@
 import styles from "./CardSliderHeader.module.css";
-import type { CardSliderHeaderProps } from "../../types/cardSliderTypes.ts";
+import type { CardSliderHeaderProps } from "../CardSlider/types/cardSliderTypes.ts";
+import { Link } from "react-router-dom";
 
 export default function CardSliderHeader({
   title,
@@ -8,9 +9,9 @@ export default function CardSliderHeader({
   return (
     <>
       <h2 className={styles.sliderTitle}>{title}</h2>
-      <a href={seeAllLink} className={styles.sliderAction}>
+      <Link to={seeAllLink} className={styles.sliderAction}>
         See All
-      </a>
+      </Link>
     </>
   );
 }

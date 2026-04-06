@@ -10,10 +10,27 @@
     gap: 0.28vw;
 
     background: #FFFFFF;
-    border: 1px solid #E4E7EC;
+    border: 1px solid var(--light--gray);
     border-radius: 0.55vw;
 
     cursor: pointer;
     transition: all 0.2s ease;
     margin-left: 1.11vw;
+}
+
+.strokeActive{
+    stroke:var(--dark-gray);
+}
+
+.strokeInactive {
+    stroke: var(--light--gray);
+}
+
+.arrowButton svg {
+    width: 1.66vw;
+    height: 1.66vw;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }

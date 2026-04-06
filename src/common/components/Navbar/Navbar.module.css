@@ -3,9 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2.5rem;
-    font-family: "Urbanist", sans-serif;
     color: #ffffff;
-    background-color: #1D2939;
+    background-color: var(--dark-blue);
     border-bottom: 0.0625rem solid #667085;
     height:5em;
 }
@@ -21,9 +20,13 @@
     font-weight: 400;
 }
 
-.signIn {
+.signInWrapper{
     width: 5.6rem;
     height: 3rem;
+    margin-right: 2.5rem;
+}
+
+.signIn {
     padding: 0.6rem 0.9rem;
     border-radius: 0.5rem;
     border: 0.0625rem solid #ffffff;
@@ -36,8 +39,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 2.5rem;
-
 }
 
 .logo {
@@ -52,3 +53,4 @@
     display: block;
     padding-left: 2.5rem;
 }
+

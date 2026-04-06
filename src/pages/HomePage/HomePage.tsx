@@ -1,6 +1,6 @@
 import Hero from "./Hero/Hero.tsx";
 import VenueNamesSlider from "./VenueNamesSlider/VenueNamesSlider.tsx";
-import { CardSlider } from "../../common/components/CardSlider/CardSlider.tsx";
+import CardSlider from "../../common/components/CardSlider/CardSlider.tsx";
 
 export default function HomePage() {
   return (

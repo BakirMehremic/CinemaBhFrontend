@@ -1,4 +1,5 @@
 import styles from "./Pricing.module.css";
+import PricingCard from "./components/PricingCard.tsx";
 
 export default function Pricing() {
   return (
@@ -12,51 +13,42 @@ export default function Pricing() {
         </div>
       </div>
       <div className={styles.cardsContainer}>
-        <div className={styles.smallCard}>
-          <p className={styles.cardTitle}>Regular seats</p>
-          <p className={styles.smallCardPrice}>7 KM</p>
-          <p className={styles.perTicket}>*per ticket</p>
-          <div className={styles.bulletPointsContainer}>
-            <p className={styles.bulletPoint}>Comfortable seating</p>
-            <p className={styles.bulletPoint}>Affordable Pricing</p>
-            <p className={styles.bulletPoint}>Wide Selection</p>
-            <p className={styles.bulletPoint}>Accessible locations</p>
-            <p className={styles.bulletPoint}>Suitable for everyone</p>
-          </div>
-          <button className={styles.smallCardButton}>
-            <p className={styles.smallCardButtonText}>Explore Movies</p>
-          </button>
-        </div>
-        <div className={styles.bigCard}>
-          <p className={styles.cardTitle}>Love Seats</p>
-          <p className={styles.bigCardPrice}>24 KM</p>
-          <p className={styles.perTicket}>*per ticket</p>
-          <div className={styles.bulletPointsContainer}>
-            <p className={styles.bulletPoint}>Side-by-side design</p>
-            <p className={styles.bulletPoint}>Comfortable padding</p>
-            <p className={styles.bulletPoint}>Adjustable armrests</p>
-            <p className={styles.bulletPoint}>Cup holders</p>
-            <p className={styles.bulletPoint}>Reserved for couples</p>
-          </div>
-          <button className={styles.bigCardButton}>
-            <p className={styles.bigCardButtonText}>Explore Movies</p>
-          </button>
-        </div>
-        <div className={styles.smallCard}>
-          <p className={styles.cardTitle}>VIP Seats</p>
-          <p className={styles.smallCardPrice}>10 KM</p>
-          <p className={styles.perTicket}>*per ticket</p>
-          <div className={styles.bulletPointsContainer}>
-            <p className={styles.bulletPoint}>Enhanced comfort</p>
-            <p className={styles.bulletPoint}>Priority seating</p>
-            <p className={styles.bulletPoint}>Prime viewing</p>
-            <p className={styles.bulletPoint}>Personal space</p>
-            <p className={styles.bulletPoint}>Luxury extras</p>
-          </div>
-          <button className={styles.smallCardButton}>
-            <p className={styles.smallCardButtonText}>Explore Movies</p>
-          </button>
-        </div>
+        <PricingCard
+          title="Regular seats"
+          price={7}
+          features={[
+            "Comfortable seating",
+            "Affordable Pricing",
+            "Wide Selection",
+            "Accessible locations",
+            "Suitable for everyone",
+          ]}
+          isBig={false}
+        />
+        <PricingCard
+          title="Love Seats"
+          price={24}
+          features={[
+            "Side-by-side design",
+            "Comfortable padding",
+            "Adjustable armrests",
+            "Cup holders",
+            "Reserved for couples",
+          ]}
+          isBig={true}
+        />
+        <PricingCard
+          title="VIP Seats"
+          price={10}
+          features={[
+            "Enhanced comfort",
+            "Priority seating",
+            "Prime viewing",
+            "Personal space",
+            "Luxury extras",
+          ]}
+          isBig={false}
+        />
       </div>
     </>
   );

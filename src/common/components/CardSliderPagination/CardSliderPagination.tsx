@@ -1,9 +1,8 @@
 import styles from "./CardSliderPagination.module.css";
-import type { PaginationProps } from "../../types/paginationTypes.ts";
-import { ArrowButton } from "../ArrowButton/ArrowButton.tsx";
+import ArrowButton from "../ArrowButton/ArrowButton.tsx";
+import type { PaginationProps } from "./types/paginationProps.ts";
 
 export default function CardSliderPagination({
-  currentPage,
   totalPages,
   totalElements,
   elementCount,
@@ -12,8 +11,8 @@ export default function CardSliderPagination({
   onNextPage,
   onPrevPage,
 }: PaginationProps) {
-  const hasNextPage = currentPage + 1 < totalPages;
-  const hasPrevPage = currentPage > 0;
+  const hasNextPage = pageNumber + 1 < totalPages;
+  const hasPrevPage = pageNumber > 0;
   const shownElements = pageNumber * pageSize + elementCount;
 
   return (

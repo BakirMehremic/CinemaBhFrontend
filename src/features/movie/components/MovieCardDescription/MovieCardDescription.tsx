@@ -1,5 +1,5 @@
 import type { MoviePreviewResponse } from "../../types/responseTypes.ts";
-import styles from "./ModuleCardDescription.module.css";
+import styles from "./MovieCardDescription.module.css";
 
 export default function MovieCardDescription({
   movie,

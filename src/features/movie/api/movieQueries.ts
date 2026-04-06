@@ -18,7 +18,7 @@ export async function getMoviePreviewsPaginated(
 export async function getHeroSectionMovies(): Promise<MoviePreviewResponse[]> {
   const response = await moviesApi.get("/preview", {
     params: {
-      status: "SHOWING",
+      showingStatus: "SHOWING",
       pageNumber: 0,
       pageSize: 3,
     },

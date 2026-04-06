@@ -1,23 +1,30 @@
 import styles from "./Hero.module.css";
 import { useEffect, useState } from "react";
-import { useHeroSectionMovies } from "../../../features/movie/hooks/useHeroSectionMovies.ts";
+import useHeroSectionMovies from "../../../features/movie/hooks/useHeroSectionMovies.ts";
 import placeholderImage from "../../../assets/avatar-image.jpg";
 
 export default function Hero() {
   const { data, isLoading, isError, error } = useHeroSectionMovies();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     if (!data || data.length < 2) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => {
-        if (prev === data.length - 1) {
-          return 0;
-        } else {
-          return prev + 1;
-        }
-      });
+      setIsTransitioning(true);
+
+      setTimeout(() => {
+        setCurrentIndex((prev) => {
+          if (prev === data.length - 1) {
+            return 0;
+          } else {
+            return prev + 1;
+          }
+        });
+
+        setIsTransitioning(false);
+      }, 700);
     }, 4000);
 
     return () => clearInterval(interval);
@@ -34,7 +41,7 @@ export default function Hero() {
   return (
     <div className={styles.imageContainer}>
       <img
-        className={styles.image}
+        className={`${styles.image} ${isTransitioning ? styles.fadeActive : ""}`}
         src={
           movie.cover_photo_url != null
             ? movie.cover_photo_url
@@ -43,7 +50,11 @@ export default function Hero() {
         alt={movie.name}
       />
 
-      <div className={styles.overlayContent}>
+      <div
+        className={`${styles.overlayContent} ${
+          isTransitioning ? styles.fadeActive : styles.fade
+        }`}
+      >
         <div>
           {movie.genres[0] ? (
             <div className={styles.genreContainer}>

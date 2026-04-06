@@ -3,6 +3,7 @@ import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const isLoggedIn = false;
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
@@ -22,8 +23,9 @@ export default function Navbar() {
           <p>Venues</p>
         </Link>
       </div>
-
-      <button className={styles.signIn}>Sign In</button>
+      <div className={styles.signInWrapper}>
+        {isLoggedIn && <button className={styles.signIn}>Sign In</button>}
+      </div>
     </nav>
   );
 }

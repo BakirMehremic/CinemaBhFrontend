@@ -1,12 +1,11 @@
-import type { ArrowButtonProps } from "../../types/arrowButtonProps.ts";
+import type { ArrowButtonProps } from "./types/arrowButtonProps.ts";
 import styles from "./ArrowButton.module.css";
 
-export function ArrowButton({
+export default function ArrowButton({
   direction,
   isActive,
   onClick,
 }: ArrowButtonProps) {
-  const stroke = isActive ? "#344054" : "#E4E7EC";
   const isLeft = direction == "left";
 
   return (
@@ -16,14 +15,8 @@ export function ArrowButton({
       className={styles.arrowButton}
     >
       <svg
-        width="24"
-        height="24"
+        className={isActive ? styles.strokeActive : styles.strokeInactive}
         viewBox="0 0 24 24"
-        fill="none"
-        stroke={stroke}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       >
         {isLeft ? (
           <>

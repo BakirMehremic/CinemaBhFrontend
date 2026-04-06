@@ -6,9 +6,7 @@ export default function useVenueNameIdPairs() {
   return useQuery<NameIdPair[], Error>({
     queryKey: ["venue-name-id-pairs"],
 
-    queryFn: async () => {
-      return await getVenueNameIdPairs();
-    },
+    queryFn: () => getVenueNameIdPairs(),
     staleTime: 1000 * 60 * 30,
   });
 }

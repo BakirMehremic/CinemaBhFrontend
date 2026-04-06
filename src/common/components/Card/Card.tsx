@@ -1,4 +1,4 @@
-import type { CardItem } from "../../types/cardSliderTypes.ts";
+import type { CardItem } from "../CardSlider/types/cardSliderTypes.ts";
 import { isMoviePreviewResponse } from "../../util/typeChecks.ts";
 import styles from "./Card.module.css";
 import MovieCardDescription from "../../../features/movie/components/MovieCardDescription/MovieCardDescription.tsx";

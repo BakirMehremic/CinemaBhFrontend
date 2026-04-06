@@ -3,7 +3,7 @@
     line-height: 2.78vw;
     font-weight: 700;
     letter-spacing: 0.75%;
-    color: #1D2939;
+    color: var(--dark-blue);
     margin: 0;
 }
 
@@ -11,7 +11,7 @@
     font-size: 1.12vw;
     line-height: 1.68vw;
     font-weight: 600;
-    color: #B22222;
+    color: var(--dark-red);
     cursor: pointer;
     position: relative;
     top: 0.55vw;
