@@ -1,0 +1,12 @@
+.paginationContainer {
+    margin-top:1.66vw;
+    font-weight: 400;
+    font-size: 1.125vw;
+    color:var(--dark-blue);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.elementNumber{
+    font-weight: 600;
+}

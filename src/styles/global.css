@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;1000;100&display=swap");
+
+body {
+    margin: 0;
+    font-family: "Urbanist", sans-serif;
+    background:var(--custom-white);
+}
+
+.error-message {
+    color: darkred;
+    font-size: 3vw;
+    text-align: center;
+}
+
+:root {
+    --dark-blue:#1D2939;
+    --custom-white: #FCFCFD;
+    --dark-red: #B22222;
+    --grey-inactive: #98A2B3;
+    --light-gray: #E4E7EC;
+    --dark-gray: #344054;
+    --medium-gray: #667085;
+}

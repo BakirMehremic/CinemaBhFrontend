@@ -1,0 +1,36 @@
+.slider {
+    display: flex;
+    overflow: hidden;
+    background-color: var(--custom-white);
+    padding: 2rem 0;
+}
+
+.sliderContent {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 40s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.sliderItem {
+    color: var(--grey-inactive);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    letter-spacing: -0.15%;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 16px;
+
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@keyframes scroll {
+    to {
+        transform: translateX(-50%);
+    }
+}

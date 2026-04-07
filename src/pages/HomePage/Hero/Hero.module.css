@@ -1,0 +1,114 @@
+.imageContainer {
+    position: relative;
+    overflow: hidden;
+    height: 48vw;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 1.4s ease-out;
+    filter: blur(0);
+}
+
+.bottomRects {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 2vw;
+    justify-content: center;
+}
+
+.rect {
+    width: 5vw;
+    max-width: 30px;
+    height: 0.8vw;
+    max-height: 4px;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+.rectActive {
+    composes: rect;
+    background-color: #F9FAFB;
+}
+
+.rectInactive {
+    composes: rect;
+    background-color: var(--grey-inactive);
+}
+
+.overlayContent {
+    position: absolute;
+    bottom: 15%;
+    left: 6.4vw;
+    color: var(--custom-white);
+}
+.genreContainer {
+    width: fit-content;
+    height: 1.38vw;
+    font-size: 0.9vw;
+    line-height: 1.38vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 400;
+    padding: 6px 8px;
+    border-radius: 8px;
+
+    background: var(--light-gray);
+    margin-bottom: 0.6vw;
+    color: var(--dark-gray);
+}
+
+.textContent h1 {
+    font-size: 3.3vw;
+    line-height: 3.8vw;
+    margin: 1.11vw 0 1.11vw 0;
+    letter-spacing: -0.5%;
+}
+
+.textContent h6 {
+    font-size: 1.38vw;
+    line-height: 1.66vw;
+    font-weight: 700;
+    letter-spacing: -0.15%;
+    margin: 0 0 2.2vw 0;
+    opacity: 0.9;
+    max-width: 60%;
+}
+
+.buyTicketButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+
+    background-color: var(--dark-red);
+    color: #FAFAFA;
+    border: none;
+    cursor: pointer;
+
+    font-weight: 400;
+    font-size: 1.11vw;
+    line-height: 1.66vw;
+    letter-spacing: 0.005em;
+
+    width: 7.9vw;
+    min-width: 7rem;
+    height: 3.3vw;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.fadeActive {
+    filter: blur(2px);
+}

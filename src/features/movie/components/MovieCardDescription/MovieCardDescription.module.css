@@ -1,0 +1,19 @@
+.movieGenre {
+    color: var(--medium-gray);
+    font-size: 0.96vw;
+    line-height: 1.38vw;
+    letter-spacing: 1.25%;
+    text-align: center;
+    margin: 0.8em 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.divider {
+    width: 1px;
+    height: 1.2em;
+    background-color: var(--medium-gray);
+    display: inline-block;
+}
