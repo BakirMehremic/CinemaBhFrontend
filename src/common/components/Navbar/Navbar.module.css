@@ -3,9 +3,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2.5rem;
-    color: #ffffff;
+    color: white;
     background-color: var(--dark-blue);
-    border-bottom: 0.0625rem solid #667085;
+    border-bottom: 0.0625rem solid var(--medium-gray);
     height:5em;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .links a {
-    color: #ffffff;
+    color: white;
     text-decoration: none;
     font-weight: 400;
 }
@@ -29,9 +29,9 @@
 .signIn {
     padding: 0.6rem 0.9rem;
     border-radius: 0.5rem;
-    border: 0.0625rem solid #ffffff;
+    border: 0.0625rem solid white;
     background: transparent;
-    color: #ffffff;
+    color: white;
     font-size: 1em;
     line-height: 1.5em;
     letter-spacing: 0.5%;

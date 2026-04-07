@@ -10,11 +10,12 @@ export default function Hero() {
 
   useEffect(() => {
     if (!data || data.length < 2) return;
+    let timeout: ReturnType<typeof setTimeout>;
 
     const interval = setInterval(() => {
       setIsTransitioning(true);
 
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setCurrentIndex((prev) => {
           if (prev === data.length - 1) {
             return 0;
@@ -27,7 +28,10 @@ export default function Hero() {
       }, 700);
     }, 4000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
   }, [data]);
 
   if (isLoading) return <div>Loading...</div>;
@@ -75,7 +79,7 @@ export default function Hero() {
           <div
             key={movie.id}
             className={
-              index == currentIndex ? styles.rectActive : styles.rectInactive
+              index === currentIndex ? styles.rectActive : styles.rectInactive
             }
           />
         ))}

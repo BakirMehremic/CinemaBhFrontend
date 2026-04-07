@@ -13,15 +13,9 @@ export default function Navbar() {
       </div>
 
       <div className={styles.links}>
-        <Link to="/">
-          <p>Currently Showing</p>
-        </Link>
-        <Link to="/">
-          <p>Upcoming Movies</p>
-        </Link>
-        <Link to="/">
-          <p>Venues</p>
-        </Link>
+        <Link to="/">Currently Showing</Link>
+        <Link to="/">Upcoming Movies</Link>
+        <Link to="/">Venues</Link>
       </div>
       <div className={styles.signInWrapper}>
         {isLoggedIn && <button className={styles.signIn}>Sign In</button>}

@@ -4,7 +4,7 @@ import type {
   SliderType,
 } from "../components/CardSlider/types/cardSliderTypes.ts";
 import type { PaginatedResponse } from "../types/paginationTypes.ts";
-import { getMoviePreviewsPaginated } from "../../features/movie/api/movieQueries.ts";
+import getMoviePreviewsPaginated from "../../features/movie/api/movieQueries.ts";
 import { getVenuePreviewsPaginated } from "../../features/venue/api/venueQueries.ts";
 
 export default function usePaginatedData(
@@ -30,11 +30,14 @@ export default function usePaginatedData(
             status: "UPCOMING",
           });
 
-        default:
+        case "venues":
           return getVenuePreviewsPaginated({
             pageNumber,
             pageSize,
           });
+
+        default:
+          throw new Error(`Invalid slider type ${type}`);
       }
     },
     staleTime: 1000 * 60,

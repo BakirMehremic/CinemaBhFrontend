@@ -6,7 +6,7 @@ export default function ArrowButton({
   isActive,
   onClick,
 }: ArrowButtonProps) {
-  const isLeft = direction == "left";
+  const isLeft = direction === "left";
 
   return (
     <button

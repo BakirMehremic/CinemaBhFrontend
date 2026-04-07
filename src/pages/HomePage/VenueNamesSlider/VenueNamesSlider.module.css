@@ -20,7 +20,7 @@
     line-height: 32px;
     font-weight: 700;
     letter-spacing: -0.15%;
-    border: 1px solid var(--light--gray);
+    border: 1px solid var(--light-gray);
     border-radius: 0.5rem;
     cursor: pointer;
     padding: 16px;

@@ -47,7 +47,7 @@ export default function AboutUs() {
         </p>
       </div>
       <div className={styles.seatsImage}>
-        <img src={seatsImage} alt="Footer" className={styles.image} />
+        <img src={seatsImage} alt="Seats" className={styles.image} />
       </div>
     </>
   );

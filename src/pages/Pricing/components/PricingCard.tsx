@@ -1,4 +1,4 @@
-import type { PricingCardProps } from "../types/pricinCardProps.ts";
+import type { PricingCardProps } from "../types/pricingCardProps.ts";
 import styles from "./PricingCard.module.css";
 
 export default function PricingCard({

@@ -60,7 +60,7 @@
     padding: 6px 8px;
     border-radius: 8px;
 
-    background: var(--light--gray);
+    background: var(--light-gray);
     margin-bottom: 0.6vw;
     color: var(--dark-gray);
 }
