@@ -1,0 +1,13 @@
+.marginContainer {
+    margin-left: 6vw;
+}
+
+.venuesTitle {
+    font-weight: 700;
+    font-size: 2.22vw;
+    line-height: 2.78vw;
+    letter-spacing: -0.25%;
+    margin-top: 2.78vw;
+    margin-bottom: 2vw;
+    color: var(--dark-blue);
+}
