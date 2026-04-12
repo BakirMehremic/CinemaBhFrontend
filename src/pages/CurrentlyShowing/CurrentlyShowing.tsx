@@ -1,5 +1,5 @@
 import styles from "./CurrentlyShowing.module.css";
-import NameSearchBox from "../../features/movie/components/NameSearchBox/NameSearchBox.tsx";
+import NameSearchBox from "../../common/components/NameSearchBox/NameSearchBox.tsx";
 import NameIdDropdown from "../../common/components/NameIdDropdown/NameIdDropdown.tsx";
 import type { NameIdPair } from "../../common/types/responseTypes.ts";
 import DatePicker from "../../features/movie/components/DatePicker/DatePicker.tsx";

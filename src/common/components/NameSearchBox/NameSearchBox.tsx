@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 export default function NameSearchBox({
   onSearch,
   initialValue = "",
+  width = "85.3vw",
 }: NameSearchBoxProps) {
   const [query, setQuery] = useState(initialValue);
   const previousQuery = useRef(query);
@@ -29,6 +30,7 @@ export default function NameSearchBox({
       <input
         type="text"
         className={styles.searchBox}
+        style={{ width }}
         placeholder="Search Movies"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
