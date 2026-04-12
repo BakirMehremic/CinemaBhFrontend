@@ -19,7 +19,7 @@ export default function ShowingMovieCard({
           <span className={styles.divider}>|</span>
           <span>{movie.language}</span>
           <span className={styles.divider}>|</span>
-          <span>{movie.duration}</span>
+          <span>{movie.duration} Min</span>
         </div>
         <div className={styles.genresContainer}>
           {movie.genres.map((g) => (
