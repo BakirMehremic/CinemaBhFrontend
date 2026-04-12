@@ -4,6 +4,7 @@ import Footer from "./common/components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Pricing from "./pages/Pricing/Pricing";
+import CurrentlyShowing from "./pages/CurrentlyShowing/CurrentlyShowing.tsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/showing" element={<CurrentlyShowing />} />
       </Routes>
       <Footer />
     </BrowserRouter>

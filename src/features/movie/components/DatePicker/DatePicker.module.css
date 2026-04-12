@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    gap: 1.18vw;
+}
+
+.box {
+    width: 7.66vw;
+    height: 5.84vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.56vw;
+    background: white;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px var(--box-shadow);
+}
+
+.monthDay {
+    font-size: 1.11vw;
+    line-height: 1.66vw;
+    font-weight: 600;
+    color: var(--dark-blue);
+    margin-top: 1.11vw;
+}
+
+.date {
+    font-size: 1.11vw;
+    line-height: 1.66vw;
+    font-weight: 400;
+    color: var(--medium-gray);
+    margin-bottom: 1.11vw;
+}
+
+.activeBox {
+    composes: box;
+    background: var(--dark-red);
+}
+
+.activeMonthDay {
+    composes: monthDay;
+    font-size: 1.38vw;
+    font-weight: 700;
+    margin-top: 1.11vw;
+    color: var(--custom-white);
+}
+
+.activeDate {
+    composes: date;
+    color: var(--custom-white);
+}

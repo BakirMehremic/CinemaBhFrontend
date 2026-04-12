@@ -70,7 +70,7 @@ export default function Hero() {
         <div className={styles.textContent}>
           <h1>{movie.name}</h1>
           <h6>{movie.synopsis}</h6>
-          <button className={styles.buyTicketButton}>Buy Ticket</button>
+          {/*          <button className={styles.buyTicketButton}>Buy Ticket</button>*/}
         </div>
       </div>
 

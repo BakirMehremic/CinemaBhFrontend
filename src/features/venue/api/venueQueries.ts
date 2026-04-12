@@ -16,7 +16,13 @@ export async function getVenuePreviewsPaginated(
   return response.data;
 }
 
-export async function getVenueNameIdPairs(): Promise<NameIdPair[]> {
-  const response = await venuesApi.get("/names");
+export async function getVenueNameIdPairs(
+  cityId?: number,
+): Promise<NameIdPair[]> {
+  const response = await venuesApi.get("/names", {
+    params: {
+      cityId: cityId ? null : cityId,
+    },
+  });
   return response.data;
 }

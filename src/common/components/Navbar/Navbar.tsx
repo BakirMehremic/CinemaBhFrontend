@@ -13,8 +13,8 @@ export default function Navbar() {
       </div>
 
       <div className={styles.links}>
-        <Link to="/">Currently Showing</Link>
-        <Link to="/">Upcoming Movies</Link>
+        <Link to="/showing">Currently Showing</Link>
+        {/*        <Link to="/">Upcoming Movies</Link>*/}
         <Link to="/">Venues</Link>
       </div>
       <div className={styles.signInWrapper}>

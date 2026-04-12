@@ -5,7 +5,7 @@
     background: white;
     border: 1px solid var(--light-gray);
     border-radius: 1.5rem;
-    box-shadow: 0 4px 6px -1px #34405414;
+    box-shadow: 0 4px 6px -1px var(--box-shadow);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
