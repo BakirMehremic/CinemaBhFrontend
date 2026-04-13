@@ -10,9 +10,9 @@ import useVenueNameIdPairs from "../../features/venue/hooks/useVenueNameIdPairs.
 import useGenreNameIdPairs from "../../features/genre/hooks/useGenreNameIdPairs.ts";
 import useUrlFilters from "../../common/hooks/useUrlFilters.ts";
 import type { FilterShowingMoviesParams } from "../../features/movie/types/requestTypes.ts";
-import NoMovies from "../../features/movie/components/NoMovies/NoMovies.tsx";
 import { Building, CalendarClock, MapPin, Video } from "lucide-react";
 import { PROJECTION_TIMES } from "../../features/movie/constants/projectionTimes.ts";
+import NoData from "../../common/components/NoData/NoData.tsx";
 
 export default function CurrentlyShowing() {
   const [filters, setFilters] = useUrlFilters<FilterShowingMoviesParams>({
@@ -146,7 +146,7 @@ export default function CurrentlyShowing() {
             <ShowingMovieCard key={movie.id} movie={movie} />
           ))
         ) : (
-          <NoMovies></NoMovies>
+          <NoData></NoData>
         )}
       </div>
       {hasMovies && hasNextPage && (

@@ -6,4 +6,5 @@ export type NameIdDropdownProps = {
   onSelect: (option: NameIdPair) => void;
   placeholder: string;
   Icon: LucideIcon;
+  width?: string;
 };

@@ -9,6 +9,7 @@ export default function NameIdDropdown({
   onSelect,
   placeholder,
   Icon,
+  width = "20.97vw",
 }: NameIdDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<NameIdPair | null>(null);
@@ -28,7 +29,7 @@ export default function NameIdDropdown({
   };
 
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} style={{ width }}>
       <button
         className={styles.dropdownButton}
         onClick={toggleDropdown}
