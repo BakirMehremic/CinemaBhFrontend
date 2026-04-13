@@ -16,3 +16,9 @@ export type FilterShowingMoviesParams = {
   pageSize: number;
   pageNumber: number;
 };
+
+export type MovieByVenueIdRequest = {
+  pageNumber: number;
+  pageSize: number;
+  venueId: number;
+};

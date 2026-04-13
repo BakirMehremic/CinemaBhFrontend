@@ -44,3 +44,8 @@
     letter-spacing: 1.25%;
     text-align: center;
 }
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}

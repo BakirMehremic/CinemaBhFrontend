@@ -14,12 +14,12 @@ export default function HomePage() {
       ></CardSlider>
       <CardSlider
         title="Upcoming Movies"
-        seeAllLink="/about"
+        seeAllLink="/showing"
         type="upcomingMovies"
       ></CardSlider>
       <CardSlider
         title="Venues"
-        seeAllLink="/pricing"
+        seeAllLink="/venues"
         type="venues"
       ></CardSlider>
     </>

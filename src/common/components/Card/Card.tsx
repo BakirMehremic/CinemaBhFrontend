@@ -6,6 +6,7 @@ import styles from "./Card.module.css";
 import MovieCardDescription from "../../../features/movie/components/MovieCardDescription/MovieCardDescription.tsx";
 import placeholderImage from "../../../assets/placeholder-image.png";
 import type { CardProps } from "./types/CardProps.ts";
+import { Link } from "react-router-dom";
 
 export default function Card({ item, style }: CardProps) {
   if (isMoviePreviewResponse(item)) {
@@ -32,24 +33,26 @@ export default function Card({ item, style }: CardProps) {
     );
   } else {
     return (
-      <div
-        className={styles.card}
-        style={{
-          width: style?.cardWidth,
-          height: style?.cardHeight,
-        }}
-      >
-        <img
-          src={item.image_url}
-          alt={item.name}
-          className={styles.image}
+      <Link to={`/venues/${item.id}`} className={styles.link}>
+        <div
+          className={styles.card}
           style={{
-            width: style?.imageWidth,
-            height: style?.imageHeight,
+            width: style?.cardWidth,
+            height: style?.cardHeight,
           }}
-        />
-        <h3 className={styles.title}>{item.name}</h3>
-      </div>
+        >
+          <img
+            src={item.image_url}
+            alt={item.name}
+            className={styles.image}
+            style={{
+              width: style?.imageWidth,
+              height: style?.imageHeight,
+            }}
+          />
+          <h3 className={styles.title}>{item.name}</h3>
+        </div>
+      </Link>
     );
   }
 }

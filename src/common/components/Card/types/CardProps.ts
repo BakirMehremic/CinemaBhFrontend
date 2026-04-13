@@ -8,4 +8,5 @@ export type CardProps = {
     imageWidth?: string;
     imageHeight?: string;
   };
+  link?: string;
 };
