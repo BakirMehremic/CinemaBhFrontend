@@ -1,6 +1,6 @@
 import styles from "./CurrentlyShowing.module.css";
 import NameSearchBox from "../../common/components/NameSearchBox/NameSearchBox.tsx";
-import NameIdDropdown from "../../common/components/NameIdDropdown/NameIdDropdown.tsx";
+import OptionsDropdown from "../../common/components/OptionsDropdown/OptionsDropdown.tsx";
 import type { NameIdPair } from "../../common/types/responseTypes.ts";
 import DatePicker from "../../features/movie/components/DatePicker/DatePicker.tsx";
 import ShowingMovieCard from "../../features/movie/components/ShowingMovieCard/ShowingMovieCard.tsx";
@@ -11,8 +11,8 @@ import useGenreNameIdPairs from "../../features/genre/hooks/useGenreNameIdPairs.
 import useUrlFilters from "../../common/hooks/useUrlFilters.ts";
 import type { FilterShowingMoviesParams } from "../../features/movie/types/requestTypes.ts";
 import { Building, CalendarClock, MapPin, Video } from "lucide-react";
-import { PROJECTION_TIMES } from "../../features/movie/constants/projectionTimes.ts";
 import NoData from "../../common/components/NoData/NoData.tsx";
+import useShowingMoviesProjectionTimes from "../../features/projection/hooks/useShowingMoviesProjectionTimes.ts";
 
 export default function CurrentlyShowing() {
   const [filters, setFilters] = useUrlFilters<FilterShowingMoviesParams>({
@@ -41,15 +41,23 @@ export default function CurrentlyShowing() {
     pageSize: filters.pageSize,
   });
 
-  const { data: cityData } = useCityNameIdPairs();
-  const { data: venueData } = useVenueNameIdPairs();
-  const { data: genreData } = useGenreNameIdPairs();
+  const { data: projectionTimesData = [] } = useShowingMoviesProjectionTimes({
+    cityId: filters.cityId,
+    venueId: filters.venueId,
+    genreId: filters.genreId,
+    movieName: filters.name,
+    date: filters.projectionDate,
+  });
+
+  const { data: venueData = [] } = useVenueNameIdPairs(filters.cityId);
+  const { data: cityData = [] } = useCityNameIdPairs();
+  const { data: genreData = [] } = useGenreNameIdPairs();
 
   const handleNameIdSelect =
-    (key: "cityId" | "venueId" | "genreId") => (option: NameIdPair) => {
+    (key: "cityId" | "venueId" | "genreId") => (option: NameIdPair | null) => {
       setFilters((prev) => ({
         ...prev,
-        [key]: option ? option.id : undefined,
+        [key]: option?.id ?? undefined,
       }));
     };
 
@@ -76,12 +84,10 @@ export default function CurrentlyShowing() {
     }));
   };
 
-  // TODO find a better way to do this
-  const handleSelectProjectionTime = (option: NameIdPair) => {
-    const selectedTime = PROJECTION_TIMES.find((t) => t.id === option?.id);
+  const handleSelectProjectionTime = (option: string | null) => {
     setFilters((prev) => ({
       ...prev,
-      projectionTime: selectedTime?.timeValue,
+      projectionTime: option ?? undefined,
       pageNumber: 0,
     }));
   };
@@ -108,29 +114,37 @@ export default function CurrentlyShowing() {
           initialValue={filters.name || ""}
         />
         <div className={styles.filtersContainer}>
-          <NameIdDropdown
+          <OptionsDropdown
             Icon={MapPin}
-            options={cityData ? cityData : []}
+            options={cityData}
             onSelect={handleNameIdSelect("cityId")}
             placeholder="All Cities"
+            getId={(p) => p.id}
+            getLabel={(p) => p.name}
           />
-          <NameIdDropdown
+          <OptionsDropdown
             Icon={Building}
-            options={venueData ? venueData : []}
+            options={venueData}
             onSelect={handleNameIdSelect("venueId")}
             placeholder="All Cinemas"
+            getId={(p) => p.id}
+            getLabel={(p) => p.name}
           />
-          <NameIdDropdown
+          <OptionsDropdown
             Icon={Video}
-            options={genreData ? genreData : []}
+            options={genreData}
             onSelect={handleNameIdSelect("genreId")}
             placeholder="All Genres"
+            getId={(p) => p.id}
+            getLabel={(p) => p.name}
           />
-          <NameIdDropdown
+          <OptionsDropdown
             Icon={CalendarClock}
-            options={PROJECTION_TIMES}
+            options={projectionTimesData}
             onSelect={handleSelectProjectionTime}
             placeholder="All Projection Times"
+            getId={(time) => time}
+            getLabel={(time) => time}
           />
         </div>
         <div className={styles.datePickerContainer}>

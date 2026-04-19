@@ -26,7 +26,7 @@ export async function getVenueNameIdPairs(
 ): Promise<NameIdPair[]> {
   const response = await venuesApi.get("/names", {
     params: {
-      cityId: cityId ? null : cityId,
+      cityId: cityId ?? undefined,
     },
   });
   return response.data;

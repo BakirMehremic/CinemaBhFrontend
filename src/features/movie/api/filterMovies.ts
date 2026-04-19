@@ -6,6 +6,7 @@ import { moviesApi } from "../../../common/api/baseApi.ts";
 export default async function getFilteredShowingMoviesPaginated(
   params: FilterShowingMoviesParams,
 ): Promise<PaginatedResponse<MovieShowingResponse>> {
+  console.log(params);
   const response = await moviesApi.get("/showing", {
     params: {
       ...params,

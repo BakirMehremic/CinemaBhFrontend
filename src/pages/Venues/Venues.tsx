@@ -3,7 +3,7 @@ import NameSearchBox from "../../common/components/NameSearchBox/NameSearchBox.t
 import useUrlFilters from "../../common/hooks/useUrlFilters.ts";
 import type { VenueBasicInfoRequest } from "../../features/venue/types/requestTypes.ts";
 import useFilteredVenuesBasicInfoPaginated from "../../features/venue/hooks/useVenuesBasicInfoPaginated.ts";
-import NameIdDropdown from "../../common/components/NameIdDropdown/NameIdDropdown.tsx";
+import OptionsDropdown from "../../common/components/OptionsDropdown/OptionsDropdown.tsx";
 import { Building, MapPin } from "lucide-react";
 import useCityNameIdPairs from "../../features/city/hooks/useCityNameIdPairs.ts";
 import type { NameIdPair } from "../../common/types/responseTypes.ts";
@@ -25,7 +25,7 @@ export default function Venues() {
     pageSize: filters.pageSize,
   });
 
-  const { data: cityData } = useCityNameIdPairs();
+  const { data: cityData = [] } = useCityNameIdPairs();
 
   const handleNameSearch = (query: string) => {
     setFilters((prev) => ({
@@ -58,7 +58,7 @@ export default function Venues() {
     data.page_size * (data.page_number + 1) < data.total_elements;
   const isEmpty = data.total_elements === 0;
   const resultCount = data.total_elements;
-  const cityName = cityData?.find((c) => c.id === Number(filters.cityId))?.name;
+  const cityName = cityData.find((c) => c.id === Number(filters.cityId))?.name;
 
   return (
     <>
@@ -69,13 +69,15 @@ export default function Venues() {
             onSearch={handleNameSearch}
             width="69.3vw"
           ></NameSearchBox>
-          <NameIdDropdown
-            options={cityData ? cityData : []}
+          <OptionsDropdown
+            options={cityData}
             onSelect={handleCitySelect}
             placeholder="All cities"
             Icon={MapPin}
             width="13.6vw"
-          ></NameIdDropdown>
+            getId={(p) => p.id}
+            getLabel={(p) => p.name}
+          ></OptionsDropdown>
         </div>
         <div className={styles.sliderContainer}>
           {data.content.map((venue) => (
