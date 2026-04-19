@@ -9,9 +9,6 @@
     display: flex;
     gap: 3rem;
     animation: scroll 40s linear infinite;
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
 .sliderItem {
@@ -30,7 +27,10 @@
 }
 
 @keyframes scroll {
-    to {
-        transform: translateX(-50%);
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%);
     }
 }

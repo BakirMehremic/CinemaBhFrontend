@@ -9,17 +9,17 @@ export default function HomePage() {
       <VenueNamesSlider></VenueNamesSlider>
       <CardSlider
         title="Currently Showing"
-        seeAllLink="/"
+        seeAllLink="/showing"
         type="showingMovies"
       ></CardSlider>
       <CardSlider
         title="Upcoming Movies"
-        seeAllLink="/about"
+        seeAllLink="/showing"
         type="upcomingMovies"
       ></CardSlider>
       <CardSlider
         title="Venues"
-        seeAllLink="/pricing"
+        seeAllLink="/venues"
         type="venues"
       ></CardSlider>
     </>

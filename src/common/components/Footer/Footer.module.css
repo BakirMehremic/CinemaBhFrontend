@@ -16,9 +16,10 @@
 }
 
 .logo {
-    width: 8.12em;
-    height: 2em;
-    margin-bottom: 1em
+    width: 9.02vw;
+    height: 2.22vw;
+    margin-bottom: 1vw;
+    margin-left: 1.5vw;
 }
 
 .links {
@@ -50,5 +51,5 @@
     background-color: white;
     margin: 0 1em;
     position: relative;
-    top:-0.15em;
+    top: -0.15em;
 }

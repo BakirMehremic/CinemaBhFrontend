@@ -6,3 +6,15 @@ export type MoviePreviewResponse = {
   synopsis: string;
   genres: string[];
 };
+
+export type MovieShowingResponse = {
+  id: number;
+  name: string;
+  cover_photo_url: string;
+  pg_rating: string;
+  language: string;
+  duration: number;
+  genres: string[];
+  projection_times: string[];
+  last_projection_date: string;
+};
