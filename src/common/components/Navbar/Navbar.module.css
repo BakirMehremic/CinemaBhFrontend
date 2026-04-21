@@ -6,7 +6,7 @@
     color: white;
     background-color: var(--dark-blue);
     border-bottom: 0.0625rem solid var(--medium-gray);
-    height:5em;
+    height: 5em;
 }
 
 .links {
@@ -20,7 +20,7 @@
     font-weight: 400;
 }
 
-.signInWrapper{
+.signInWrapper {
     width: 5.6rem;
     height: 3rem;
     margin-right: 2.5rem;
@@ -45,6 +45,7 @@
     display: flex;
     align-items: center;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .logoImage {

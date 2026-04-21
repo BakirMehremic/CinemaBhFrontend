@@ -11,3 +11,6 @@ const createApi = (baseURL: string = "") => {
 export const baseApi = createApi();
 export const moviesApi = createApi("/movies");
 export const venuesApi = createApi("/venues");
+export const citiesApi = createApi("/cities");
+export const genresApi = createApi("/genres");
+export const projectionsApi = createApi("/projections");

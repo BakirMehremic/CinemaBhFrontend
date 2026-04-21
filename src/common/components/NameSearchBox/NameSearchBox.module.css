@@ -1,0 +1,38 @@
+.searchContainer {
+    position: relative;
+    width: fit-content;
+}
+
+.searchBox {
+    width: 85.3vw;
+    height: 3.33vw;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 2.9vw;
+    box-shadow: 0 4px 6px -1px var(--box-shadow);
+    border: solid 1px var(--light-gray);
+    border-radius: 0.56vw;
+    background: white;
+    color: var(--medium-gray);
+    font-size: 1.11vw;
+    line-height: 1.66vw;
+    font-family: inherit;
+}
+
+.searchBox::placeholder {
+    font-weight: 400;
+    font-size: 1.11vw;
+    line-height: 1.66vw;
+    color: var(--medium-gray);
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1.5vw;
+    width: 1.11vw;
+    height: 1.11vw;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--medium-gray);
+}
+
