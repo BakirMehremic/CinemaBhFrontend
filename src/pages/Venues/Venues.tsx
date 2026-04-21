@@ -68,6 +68,7 @@ export default function Venues() {
           <NameSearchBox
             onSearch={handleNameSearch}
             width="69.3vw"
+            placeholder="Search Venues"
           ></NameSearchBox>
           <OptionsDropdown
             options={cityData}

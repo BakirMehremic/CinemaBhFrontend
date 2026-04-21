@@ -59,8 +59,8 @@ export default function VenueDetails() {
         </div>
 
         <div className={styles.moviesContainer}>
-          {moviesData?.content.map((item: CardItem, index: number) => (
-            <div key={item.id ? item.id : index}>
+          {moviesData.content.map((item: CardItem) => (
+            <div key={item.id}>
               <Card item={item} />
             </div>
           ))}
@@ -72,7 +72,6 @@ export default function VenueDetails() {
             title="No Movies found"
             description={`We are working on adding movies to ${data.name}.`}
             Icon={Building}
-            linkText=""
             width="85vw"
           />
         ) : hasMoreData ? (

@@ -1,5 +1,6 @@
 import {
   isMoviePreviewResponse,
+  isVenueBasicInfoResponse,
   isVenuePreviewResponse,
 } from "../../../features/movie/util/movieUtil.ts";
 import styles from "./Card.module.css";
@@ -31,7 +32,7 @@ export default function Card({ item, style }: CardProps) {
         </p>
       </div>
     );
-  } else {
+  } else if (isVenueBasicInfoResponse(item)) {
     return (
       <Link to={`/venues/${item.id}`} className={styles.link}>
         <div
@@ -54,5 +55,7 @@ export default function Card({ item, style }: CardProps) {
         </div>
       </Link>
     );
+  } else {
+    throw new Error(`Invalid card item ${item}`);
   }
 }

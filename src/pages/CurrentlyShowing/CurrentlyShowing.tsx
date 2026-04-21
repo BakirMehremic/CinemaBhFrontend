@@ -108,10 +108,10 @@ export default function CurrentlyShowing() {
         <h2 className={styles.currentlyShowingTitle}>
           Currently Showing ({resultCount})
         </h2>
-
         <NameSearchBox
           onSearch={handleNameSearch}
           initialValue={filters.name || ""}
+          placeholder="Search Movies"
         />
         <div className={styles.filtersContainer}>
           <OptionsDropdown
@@ -150,17 +150,23 @@ export default function CurrentlyShowing() {
         <div className={styles.datePickerContainer}>
           <DatePicker onSelect={handleSelectDate}></DatePicker>
         </div>
-
         <div className={styles.reminderText}>
           Quick reminder that our cinema schedule is on a ten-day update cycle.
         </div>
-
         {hasMovies ? (
           moviesData.content.map((movie) => (
             <ShowingMovieCard key={movie.id} movie={movie} />
           ))
         ) : (
-          <NoData></NoData>
+          <NoData
+            linkText="Explore Upcoming Movies"
+            linkTo="/upcoming"
+            title="No movies to preview for current date"
+            description="We are
+            working on updating our schedule for upcoming movies. Stay tuned for
+            amazing movie experience or explore our other exciting cinema features
+            in the meantime!"
+          ></NoData>
         )}
       </div>
       {hasMovies && hasNextPage && (

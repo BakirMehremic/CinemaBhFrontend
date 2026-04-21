@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 
 export default function NameSearchBox({
   onSearch,
+  placeholder,
   initialValue = "",
   width = "85.3vw",
 }: NameSearchBoxProps) {
@@ -31,7 +32,7 @@ export default function NameSearchBox({
         type="text"
         className={styles.searchBox}
         style={{ width }}
-        placeholder="Search Movies"
+        placeholder={placeholder}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

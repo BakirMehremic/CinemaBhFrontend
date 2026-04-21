@@ -56,7 +56,11 @@
     font-size: 1.11vw;
 }
 
-.dropdownItem:hover {
+.dropdownItemHighlighted {
+    composes: dropdownItem;
+}
+
+.dropdownItem:hover, .dropdownItemHighlighted {
     background: #f5f5f5;
 }
 
