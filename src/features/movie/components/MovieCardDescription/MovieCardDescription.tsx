@@ -1,10 +1,13 @@
-import type { MoviePreviewResponse } from "../../types/responseTypes.ts";
+import type {
+  MoviePreviewResponse,
+  MovieUpcomingResponse,
+} from "../../types/responseTypes.ts";
 import styles from "./MovieCardDescription.module.css";
 
 export default function MovieCardDescription({
   movie,
 }: {
-  movie: MoviePreviewResponse;
+  movie: MoviePreviewResponse | MovieUpcomingResponse;
 }) {
   const genre = movie?.genres?.[0];
 

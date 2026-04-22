@@ -1,5 +1,6 @@
 import {
   isMoviePreviewResponse,
+  isMovieUpcomingResponse,
   isVenueBasicInfoResponse,
   isVenuePreviewResponse,
 } from "../../../features/movie/util/movieUtil.ts";
@@ -54,6 +55,20 @@ export default function Card({ item, style }: CardProps) {
           <h3 className={styles.title}>{item.name}</h3>
         </div>
       </Link>
+    );
+    //TODO ADD ribbon
+  } else if (isMovieUpcomingResponse(item)) {
+    return (
+      <div className={styles.card}>
+        <div className={styles.ribbon}>RIBBON</div>
+        <img
+          src={item.cover_photo_url ? item.cover_photo_url : placeholderImage}
+          alt={item.name}
+          className={styles.image}
+        />
+        <h3 className={styles.title}>{item.name}</h3>
+        <MovieCardDescription movie={item} />
+      </div>
     );
   } else {
     throw new Error(`Invalid card item ${item}`);

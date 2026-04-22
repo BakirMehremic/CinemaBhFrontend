@@ -12,7 +12,7 @@ export default function Navbar() {
 
       <div className={styles.links}>
         <Link to="/showing">Currently Showing</Link>
-        {/*        <Link to="/">Upcoming Movies</Link>*/}
+        <Link to="/upcoming">Upcoming Movies</Link>
         <Link to="/venues">Venues</Link>
       </div>
       <div className={styles.signInWrapper}>
