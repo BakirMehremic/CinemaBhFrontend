@@ -11,6 +11,8 @@ import { Building, MapPin, Video } from "lucide-react";
 import type { NameIdPair } from "../../common/types/responseTypes.ts";
 import NoData from "../../common/components/NoData/NoData.tsx";
 import Card from "../../common/components/Card/Card.tsx";
+import DateRangePicker from "../../features/movie/components/DateRangePicker/DateRangePicker.tsx";
+import type { DateRangeStrings } from "../../features/movie/components/DateRangePicker/types/dateRangePickerTypes.ts";
 
 export default function Upcoming() {
   const [filters, setFilters] = useUrlFilters<FilterUpcomingMoviesParams>({
@@ -67,6 +69,15 @@ export default function Upcoming() {
     }));
   };
 
+  const handleDateRangeApply = (range: DateRangeStrings) => {
+    setFilters((prev) => ({
+      ...prev,
+      startShowingDateFrom: range.from ?? undefined,
+      startShowingDateTo: range.to ?? undefined,
+      pageNumber: 0,
+    }));
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div className="error-message">An error occurred</div>;
   if (!moviesData) return <div className="error-message">No data</div>;
@@ -111,14 +122,7 @@ export default function Upcoming() {
             getId={(p) => p.id}
             getLabel={(p) => p.name}
           />
-          <OptionsDropdown
-            Icon={Video}
-            options={genreData}
-            onSelect={handleNameIdSelect("genreId")}
-            placeholder="All Genres"
-            getId={(p) => p.id}
-            getLabel={(p) => p.name}
-          />
+          <DateRangePicker onApply={handleDateRangeApply} />
         </div>
         {hasMovies ? (
           <div className={styles.cardsContainer}>

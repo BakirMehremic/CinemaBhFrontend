@@ -53,22 +53,20 @@
     color: inherit;
 }
 
-/* HTML: <div class="ribbon">Your text content</div> */
 .ribbon {
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-}
+    position: absolute;
+    right: 0.9vw;
+    top: 2.5vw;
+    background: var(--dark-red);
+    color: white;
+    font-size: 1vw;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 0.5vw;
+    white-space: nowrap;
+    padding: 0.8vw 1vw;
 
-.ribbon {
-    --s: 1.8em; /* the ribbon size */
-    --d: .8em; /* the depth */
-    --c: .8em; /* the cutout part */
-
-    padding: 0 calc(var(--s) + .5em) var(--d) var(--c);
-    line-height: 1.8;
-    background: conic-gradient(at right var(--s) bottom var(--d), #0004 62.5%, #0008 0 75%, #0000 0);
-    clip-path: polygon(var(--c) 0, calc(100% - var(--s)) 0, calc(100% - var(--s)) var(--d), 100% var(--d), calc(100% - var(--c)) calc(50% + var(--d) / 2), 100% 100%, calc(100% - var(--s) - var(--d)) 100%, calc(100% - var(--s) - var(--d)) calc(100% - var(--d)), var(--c) calc(100% - var(--d)), 0 calc(50% - var(--d) / 2));
-    background-color: #CC333F; /* the main color */
-    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

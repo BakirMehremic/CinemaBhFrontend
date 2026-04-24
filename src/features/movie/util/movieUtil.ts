@@ -11,7 +11,7 @@ import type {
 export const isMoviePreviewResponse = (
   item: CardItem,
 ): item is MoviePreviewResponse => {
-  return (item as MoviePreviewResponse).duration !== undefined;
+  return (item as MoviePreviewResponse).synopsis !== undefined;
 };
 
 export const isVenuePreviewResponse = (

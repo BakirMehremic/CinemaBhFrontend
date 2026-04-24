@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+  addDays,
   addMonths,
   eachDayOfInterval,
   endOfMonth,
@@ -8,6 +9,7 @@ import {
   isBefore,
   isSameDay,
   isWithinInterval,
+  parseISO,
   startOfMonth,
   startOfToday,
   startOfWeek,
@@ -21,57 +23,51 @@ import {
   ChevronUp,
 } from "lucide-react";
 import styles from "./DateRangePicker.module.css";
+import type {
+  DateRangeProps,
+  DateRangeStrings,
+} from "./types/dateRangePickerTypes";
 
-interface DateRange {
-  from: Date | null;
-  to: Date | null;
-}
-
-interface Props {
-  onApply: (range: DateRange) => void;
-  placeholder?: string;
-}
-
-const DateRangePicker: React.FC<Props> = ({
+export default function DateRangePicker({
   onApply,
   placeholder = "Select dates",
-}) => {
+}: DateRangeProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedRange, setSelectedRange] = useState<DateRange>({
+  const [selectedRange, setSelectedRange] = useState<DateRangeStrings>({
     from: null,
     to: null,
   });
-  const [tempRange, setTempRange] = useState<DateRange>({
+  const [tempRange, setTempRange] = useState<DateRangeStrings>({
     from: null,
     to: null,
   });
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const today = startOfToday();
 
-  // Close on outside click
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const tomorrow = addDays(startOfToday(), 1);
+
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+        !dropdownRef.current.contains(e.target as Node)
+      )
         setIsOpen(false);
-      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleDateClick = (day: Date) => {
-    if (isBefore(day, today)) return; // Only future dates
+    if (isBefore(day, tomorrow)) return;
+    const dateStr = format(day, "yyyy-MM-dd");
 
     if (!tempRange.from || (tempRange.from && tempRange.to)) {
-      setTempRange({ from: day, to: null });
-    } else if (isBefore(day, tempRange.from)) {
-      setTempRange({ from: day, to: null });
+      setTempRange({ from: dateStr, to: null });
+    } else if (isBefore(day, parseISO(tempRange.from))) {
+      setTempRange({ from: dateStr, to: null });
     } else {
-      setTempRange({ ...tempRange, to: day });
+      setTempRange({ ...tempRange, to: dateStr });
     }
   };
 
@@ -81,66 +77,27 @@ const DateRangePicker: React.FC<Props> = ({
     setIsOpen(false);
   };
 
-  const renderHeader = () => (
-    <div className={styles.calendarHeader}>
-      <button
-        onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-        type="button"
-      >
-        <ChevronLeft size="1.2vw" />
-      </button>
-      <span className={styles.currentMonthName}>
-        {format(currentMonth, "MMMM yyyy")}
-      </span>
-      <button
-        onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-        type="button"
-      >
-        <ChevronRight size="1.2vw" />
-      </button>
-    </div>
-  );
-
-  const renderDays = () => {
-    const monthStart = startOfMonth(currentMonth);
-    const monthEnd = endOfMonth(monthStart);
-    const startDate = startOfWeek(monthStart);
-    const endDate = endOfWeek(monthEnd);
-    const calendarDays = eachDayOfInterval({ start: startDate, end: endDate });
-
-    return (
-      <div className={styles.calendarGrid}>
-        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
-          <div key={d} className={styles.dayOfWeek}>
-            {d}
-          </div>
-        ))}
-        {calendarDays.map((day, idx) => {
-          const isSelected =
-            (tempRange.from && isSameDay(day, tempRange.from)) ||
-            (tempRange.to && isSameDay(day, tempRange.to));
-          const inRange =
-            tempRange.from &&
-            tempRange.to &&
-            isWithinInterval(day, { start: tempRange.from, end: tempRange.to });
-          const isDisabled = isBefore(day, today);
-
-          return (
-            <div
-              key={idx}
-              className={`${styles.day} 
-                ${isSelected ? styles.selectedDay : ""} 
-                ${inRange ? styles.inRangeDay : ""} 
-                ${isDisabled ? styles.disabledDay : ""}`}
-              onClick={() => handleDateClick(day)}
-            >
-              {format(day, "d")}
-            </div>
-          );
-        })}
-      </div>
-    );
+  const handleClear = () => {
+    const clearedRange = { from: null, to: null };
+    setSelectedRange(clearedRange);
+    setTempRange(clearedRange);
+    onApply(clearedRange);
+    setIsOpen(false);
   };
+
+  const formatForDisplay = (date: Date) => {
+    return format(date, "yyyy/MM/dd");
+  };
+  const monthStart = startOfMonth(currentMonth);
+  const calendarDays = eachDayOfInterval({
+    start: startOfWeek(monthStart),
+    end: endOfWeek(endOfMonth(monthStart)),
+  });
+
+  const tFrom = tempRange.from ? parseISO(tempRange.from) : null;
+  const tTo = tempRange.to ? parseISO(tempRange.to) : null;
+  const sFrom = selectedRange.from ? parseISO(selectedRange.from) : null;
+  const sTo = selectedRange.to ? parseISO(selectedRange.to) : null;
 
   return (
     <div ref={dropdownRef} className={styles.dropdown}>
@@ -151,8 +108,8 @@ const DateRangePicker: React.FC<Props> = ({
       >
         <span className={styles.dropdownPlaceholder}>
           <Calendar className={styles.icon} />
-          {selectedRange.from
-            ? `${format(selectedRange.from, "dd.MM.yyyy")} - ${selectedRange.to ? format(selectedRange.to, "dd.MM.yyyy") : "..."}`
+          {sFrom
+            ? `${formatForDisplay(sFrom)} - ${sTo ? formatForDisplay(sTo) : "..."}`
             : placeholder}
         </span>
         {isOpen ? (
@@ -167,21 +124,73 @@ const DateRangePicker: React.FC<Props> = ({
           <div className={styles.rangeDisplay}>
             <div className={styles.dateBox}>
               <label>Start Date</label>
-              <div>
-                {tempRange.from ? format(tempRange.from, "MMM dd, yyyy") : "--"}
-              </div>
+              <span className={tFrom ? styles.selectedDate : ""}>
+                {tFrom ? formatForDisplay(tFrom) : "--"}
+              </span>
             </div>
             <div className={styles.dateBox}>
               <label>End Date</label>
-              <div>
-                {tempRange.to ? format(tempRange.to, "MMM dd, yyyy") : "--"}
-              </div>
+              <span className={tTo ? styles.selectedDate : ""}>
+                {tTo ? formatForDisplay(tTo) : "--"}
+              </span>
             </div>
           </div>
 
           <div className={styles.calendarContainer}>
-            {renderHeader()}
-            {renderDays()}
+            <div className={styles.calendarHeader}>
+              <button
+                onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
+                type="button"
+              >
+                <ChevronLeft size="1.2vw" />
+              </button>
+              <span className={styles.currentMonthName}>
+                {format(currentMonth, "MMMM yyyy")}
+              </span>
+              <button
+                onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
+                type="button"
+              >
+                <ChevronRight size="1.2vw" />
+              </button>
+            </div>
+            <div className={styles.calendarGrid}>
+              {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
+                <div key={d} className={styles.dayOfWeek}>
+                  {d}
+                </div>
+              ))}
+              {calendarDays.map((day, idx) => {
+                const isSel =
+                  (tFrom && isSameDay(day, tFrom)) ||
+                  (tTo && isSameDay(day, tTo));
+                const inRange =
+                  tFrom &&
+                  tTo &&
+                  isWithinInterval(day, { start: tFrom, end: tTo });
+                const isStart = tFrom && isSameDay(day, tFrom);
+                const isEnd = tTo && isSameDay(day, tTo);
+                const isSingle = isStart && isEnd;
+                const isDisabled = isBefore(day, tomorrow);
+
+                return (
+                  <div
+                    key={idx}
+                    className={`
+                    ${styles.day}
+                    ${isSel ? styles.selectedDay : ""}
+                    ${inRange ? styles.inRangeDay : ""}
+                    ${isDisabled ? styles.disabledDay : ""}
+                    ${isStart && !isSingle ? styles.right : ""}
+                    ${isEnd && !isSingle ? styles.left : ""}
+                  `}
+                    onClick={() => handleDateClick(day)}
+                  >
+                    {format(day, "d")}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           <div className={styles.footer}>
@@ -191,6 +200,17 @@ const DateRangePicker: React.FC<Props> = ({
             >
               Cancel
             </button>
+
+            {(tempRange.from !== null || tempRange.to !== null) && (
+              <button
+                className={styles.cancelBtn}
+                onClick={handleClear}
+                type="button"
+              >
+                Clear
+              </button>
+            )}
+
             <button
               className={styles.applyBtn}
               onClick={handleApply}
@@ -203,6 +223,4 @@ const DateRangePicker: React.FC<Props> = ({
       )}
     </div>
   );
-};
-
-export default DateRangePicker;
+}
