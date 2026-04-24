@@ -7,6 +7,7 @@ import Pricing from "./pages/Pricing/Pricing";
 import CurrentlyShowing from "./pages/CurrentlyShowing/CurrentlyShowing.tsx";
 import Venues from "./pages/Venues/Venues.tsx";
 import VenueDetails from "./pages/VenueDetails/VenueDetails.tsx";
+import Upcoming from "./pages/Upcoming/Upcoming.tsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/showing" element={<CurrentlyShowing />} />
+        <Route path="/upcoming" element={<Upcoming />} />
         <Route path="/venues" element={<Venues />} />
         <Route path="/venues/:id" element={<VenueDetails />} />
       </Routes>

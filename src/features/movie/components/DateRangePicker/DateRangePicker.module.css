@@ -1,0 +1,181 @@
+.dropdown {
+    position: relative;
+    width: 20.97vw;
+    font-family: inherit;
+}
+
+.dropdownButton {
+    width: 100%;
+    height: 3.33vw;
+    padding: 0 1vw;
+    background: white;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.56vw;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.11vw;
+    color: var(--medium-gray);
+    font-family: inherit;
+}
+
+.datePickerMenu {
+    position: absolute;
+    top: 105%;
+    left: 0;
+    width: 22vw;
+    background: white;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.56vw;
+    box-shadow: 0 0.5vw 1.5vw var(--box-shadow);
+    z-index: 1000;
+    padding: 0.8vw;
+}
+
+.rangeDisplay {
+    display: flex;
+    padding-bottom: 1vw;
+    gap: 1vw;
+}
+
+.dateBox {
+    flex: 1;
+    padding: 0.5vw 0.8vw;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.75vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+
+.dateBox label {
+    display: block;
+    font-size: 0.9vw;
+    color: var(--medium-gray);
+}
+
+.selectedDate {
+    font-size: 1.11vw;
+    font-weight: 400;
+    color: var(--dark-blue);
+}
+
+.calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
+}
+
+.calendarHeader button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--medium-gray);
+}
+
+.currentMonthName {
+    font-size: 1.11vw;
+    font-weight: 400;
+}
+
+.calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.dayOfWeek {
+    font-size: 0.8vw;
+    color: var(--medium-gray);
+    margin-bottom: 0.5vw;
+}
+
+.day {
+    margin: 0;
+    padding: 0.6vw;
+    font-size: 0.9vw;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.day.selectedDay {
+    border-radius: 0;
+    color: white;
+    background: radial-gradient(circle, var(--dark-red) 55%, transparent 57%),
+    var(--light-pink);
+}
+
+.day.selectedDay.left {
+    background: radial-gradient(circle, var(--dark-red) 55%, transparent 57%),
+    linear-gradient(to right, var(--light-pink) 50%, transparent 50%);
+}
+
+.day.selectedDay.right {
+    background: radial-gradient(circle, var(--dark-red) 55%, transparent 57%),
+    linear-gradient(to left, var(--light-pink) 50%, transparent 50%);
+}
+
+.inRangeDay {
+    background: var(--light-pink);
+}
+
+.disabledDay {
+    color: var(--light-gray);
+    cursor: not-allowed;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8vw;
+    margin-top: 1vw;
+    padding-top: 1vw;
+}
+
+.footer button {
+    padding: 0.4vw 1vw;
+    font-size: 0.9vw;
+    border-radius: 0.3vw;
+    cursor: pointer;
+    border: 1px solid var(--light-gray);
+}
+
+.dropdown .applyBtn {
+    padding: 0.5vw 1vw;
+    border-radius: 0.6vw;
+    background: var(--dark-red);
+    color: white;
+}
+
+.applyBtn:disabled {
+    cursor: not-allowed;
+}
+
+.dropdown .cancelBtn {
+    background: white;
+    border: 1px solid var(--dark-red);
+    color: var(--dark-red);
+    padding: 0.5vw 1vw;
+    border-radius: 0.6vw;
+}
+
+.icon {
+    width: 1.11vw;
+    height: 1.11vw;
+}
+
+.arrowIcon {
+    width: 1.4vw;
+    height: 1.4vw;
+}
+
+.dropdownPlaceholder {
+    gap: 0.6vw;
+    display: flex;
+}

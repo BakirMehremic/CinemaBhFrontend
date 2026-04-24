@@ -22,3 +22,14 @@ export type MovieByVenueIdRequest = {
   pageSize: number;
   venueId: number;
 };
+
+export type FilterUpcomingMoviesParams = {
+  startShowingDateFrom?: string;
+  startShowingDateTo?: string;
+  name?: string;
+  cityId?: number;
+  venueId?: number;
+  genreId?: number;
+  pageSize: number;
+  pageNumber: number;
+};
