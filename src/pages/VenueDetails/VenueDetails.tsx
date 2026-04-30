@@ -7,6 +7,7 @@ import { useState } from "react";
 import type { CardItem } from "../../common/components/CardSlider/types/cardSliderTypes.ts";
 import Card from "../../common/components/Card/Card.tsx";
 import NoData from "../../common/components/NoData/NoData.tsx";
+import LoadingSpinner from "../../common/components/LoadingSpinner/LoadingSpinner.tsx";
 
 export default function VenueDetails() {
   const { id } = useParams();
@@ -18,7 +19,7 @@ export default function VenueDetails() {
     venueId: Number(id),
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (isError) return <div className="error-message">An error occurred</div>;
   if (!data || !moviesData) return <div className="error-message">No data</div>;
 

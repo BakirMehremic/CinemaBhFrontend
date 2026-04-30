@@ -9,6 +9,7 @@ import MovieCardDescription from "../../../features/movie/components/MovieCardDe
 import placeholderImage from "../../../assets/placeholder-image.png";
 import type { CardProps } from "./types/CardProps.ts";
 import { Link } from "react-router-dom";
+import formatUpcomingDate from "../../util/dateUtils.ts";
 
 export default function Card({ item, style }: CardProps) {
   if (isMoviePreviewResponse(item)) {
@@ -57,29 +58,11 @@ export default function Card({ item, style }: CardProps) {
       </Link>
     );
   } else if (isMovieUpcomingResponse(item)) {
-    const formatDate = (dateStr: string) => {
-      const date = new Date(dateStr);
-      const now = new Date();
-
-      const diffDays = (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
-
-      const isWithin7Days = diffDays <= 7 && diffDays >= 0;
-
-      if (isWithin7Days) {
-        return date.toLocaleDateString("en-US", { weekday: "long" });
-      }
-
-      return date.toLocaleDateString("en-US", {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      });
-    };
-
     return (
       <div className={styles.card}>
-        <div className={styles.ribbon}>{formatDate(item.opens_date)}</div>
+        <div className={styles.ribbon}>
+          {formatUpcomingDate(item.opens_date)}
+        </div>
         <img
           src={item.cover_photo_url ? item.cover_photo_url : placeholderImage}
           alt={item.name}

@@ -1,6 +1,6 @@
 export type DateRangeStrings = {
-  from: string | null;
-  to: string | null;
+  from: string | undefined;
+  to: string | undefined;
 };
 
 export type DateRangeProps = {

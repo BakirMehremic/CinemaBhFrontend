@@ -5,6 +5,7 @@ import type { CardItem, CardSliderProps } from "./types/cardSliderTypes.ts";
 import Card from "../Card/Card.tsx";
 import { useState } from "react";
 import usePaginatedData from "../../hooks/usePreviewsPaginated.ts";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner.tsx";
 
 export default function CardSlider({
   title,
@@ -20,7 +21,7 @@ export default function CardSlider({
     pageSize,
   );
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (isError) return <div className="error-message">An error occurred</div>;
   if (!data || data.content.length < 1)
     return <div className="error-message">No data for {title}</div>;
