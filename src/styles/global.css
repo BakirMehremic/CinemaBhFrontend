@@ -23,6 +23,12 @@ body {
     --box-shadow: #34405414;
     --gray-blue: #475467;
     --light-pink: #FDE3E3;
+
+    --z-negative: -10;
+    --z-base: 0;
+    --z-low: 10;
+    --z-medium: 100;
+    --z-high: 1000;
 }
 
 input::placeholder {

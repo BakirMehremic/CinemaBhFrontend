@@ -9,6 +9,8 @@ import useCityNameIdPairs from "../../features/city/hooks/useCityNameIdPairs.ts"
 import type { NameIdPair } from "../../common/types/responseTypes.ts";
 import Card from "../../common/components/Card/Card.tsx";
 import NoData from "../../common/components/NoData/NoData.tsx";
+import LoadingSpinner from "../../common/components/LoadingSpinner/LoadingSpinner.tsx";
+import LoadMoreButton from "../../common/components/LoadMoreButton/LoadMoreButton.tsx";
 
 export default function Venues() {
   const [filters, setFilters] = useUrlFilters<VenueBasicInfoRequest>({
@@ -50,14 +52,8 @@ export default function Venues() {
     }));
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div className="error-message">An error occurred</div>;
-  if (!data) return <div className="error-message">No data</div>;
-
-  const hasMoreData =
-    data.page_size * (data.page_number + 1) < data.total_elements;
-  const isEmpty = data.total_elements === 0;
-  const resultCount = data.total_elements;
+  const isEmpty = data && data.total_elements === 0;
+  const resultCount = data?.total_elements ?? 0;
   const cityName = cityData.find((c) => c.id === Number(filters.cityId))?.name;
 
   return (
@@ -80,20 +76,26 @@ export default function Venues() {
             getLabel={(p) => p.name}
           ></OptionsDropdown>
         </div>
-        <div className={styles.sliderContainer}>
-          {data.content.map((venue) => (
-            <Card
-              key={venue.id}
-              item={venue}
-              style={{
-                cardWidth: "43vw",
-                cardHeight: "25.5vw",
-                imageWidth: "40.84vw",
-                imageHeight: "19.93vw",
-              }}
-            />
-          ))}
-        </div>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : isError ? (
+          <div className="error-message">An error occurred</div>
+        ) : !isEmpty && data ? (
+          <div className={styles.sliderContainer}>
+            {data.content.map((venue) => (
+              <Card
+                key={venue.id}
+                item={venue}
+                style={{
+                  cardWidth: "43vw",
+                  cardHeight: "25.5vw",
+                  imageWidth: "40.84vw",
+                  imageHeight: "19.93vw",
+                }}
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
       <div className={styles.loadMoreContainer}>
         {isEmpty ? (
@@ -103,10 +105,8 @@ export default function Venues() {
             Icon={Building}
             width="85vw"
           />
-        ) : hasMoreData ? (
-          <div className={styles.loadMore} onClick={handleLoadMore}>
-            Load More
-          </div>
+        ) : data?.has_next ? (
+          <LoadMoreButton onClick={handleLoadMore} />
         ) : null}
       </div>
     </>

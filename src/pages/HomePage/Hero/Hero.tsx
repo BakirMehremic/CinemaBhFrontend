@@ -2,6 +2,7 @@ import styles from "./Hero.module.css";
 import { useEffect, useState } from "react";
 import useHeroSectionMovies from "../../../features/movie/hooks/useHeroSectionMovies.ts";
 import placeholderImage from "../../../assets/avatar-image.jpg";
+import LoadingSpinner from "../../../common/components/LoadingSpinner/LoadingSpinner.tsx";
 
 export default function Hero() {
   const { data, isLoading, isError, error } = useHeroSectionMovies();
@@ -34,7 +35,7 @@ export default function Hero() {
     };
   }, [data]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (isError || error)
     return <div className="error-message">Error loading movies</div>;
   if (!data || data.length < 1)

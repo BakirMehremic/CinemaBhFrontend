@@ -13,6 +13,8 @@ import NoData from "../../common/components/NoData/NoData.tsx";
 import Card from "../../common/components/Card/Card.tsx";
 import DateRangePicker from "../../features/movie/components/DateRangePicker/DateRangePicker.tsx";
 import type { DateRangeStrings } from "../../features/movie/components/DateRangePicker/types/dateRangePickerTypes.ts";
+import LoadMoreButton from "../../common/components/LoadMoreButton/LoadMoreButton.tsx";
+import LoadingSpinner from "../../common/components/LoadingSpinner/LoadingSpinner.tsx";
 
 export default function Upcoming() {
   const [filters, setFilters] = useUrlFilters<FilterUpcomingMoviesParams>({
@@ -78,14 +80,7 @@ export default function Upcoming() {
     }));
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div className="error-message">An error occurred</div>;
-  if (!moviesData) return <div className="error-message">No data</div>;
-
-  const resultCount = moviesData?.total_elements;
-  const hasNextPage =
-    moviesData.page_size * (moviesData?.page_number + 1) <
-    moviesData?.total_elements;
+  const resultCount = moviesData?.total_elements ?? 0;
   const hasMovies = moviesData && moviesData.content.length > 0;
 
   return (
@@ -124,7 +119,11 @@ export default function Upcoming() {
           />
           <DateRangePicker onApply={handleDateRangeApply} />
         </div>
-        {hasMovies ? (
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : isError ? (
+          <div className="error-message">An error occurred</div>
+        ) : hasMovies ? (
           <div className={styles.cardsContainer}>
             {moviesData.content.map((movie) => (
               <Card item={movie} key={movie.id} />
@@ -142,10 +141,8 @@ export default function Upcoming() {
           ></NoData>
         )}
       </div>
-      {hasMovies && hasNextPage && (
-        <div className={styles.loadMore} onClick={handleLoadMore}>
-          Load More
-        </div>
+      {hasMovies && moviesData.has_next && (
+        <LoadMoreButton onClick={handleLoadMore} />
       )}
     </>
   );

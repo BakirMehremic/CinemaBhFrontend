@@ -8,6 +8,7 @@ import {
   format,
   isBefore,
   isSameDay,
+  isValid,
   isWithinInterval,
   parseISO,
   startOfMonth,
@@ -35,18 +36,20 @@ export default function DateRangePicker({
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedRange, setSelectedRange] = useState<DateRangeStrings>({
-    from: null,
-    to: null,
+    from: undefined,
+    to: undefined,
   });
   const [tempRange, setTempRange] = useState<DateRangeStrings>({
-    from: null,
-    to: null,
+    from: undefined,
+    to: undefined,
   });
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const tomorrow = addDays(startOfToday(), 1);
 
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleClickOutside = (e: MouseEvent) => {
       if (
         dropdownRef.current &&
@@ -63,9 +66,9 @@ export default function DateRangePicker({
     const dateStr = format(day, "yyyy-MM-dd");
 
     if (!tempRange.from || (tempRange.from && tempRange.to)) {
-      setTempRange({ from: dateStr, to: null });
+      setTempRange({ from: dateStr, to: undefined });
     } else if (isBefore(day, parseISO(tempRange.from))) {
-      setTempRange({ from: dateStr, to: null });
+      setTempRange({ from: dateStr, to: undefined });
     } else {
       setTempRange({ ...tempRange, to: dateStr });
     }
@@ -78,7 +81,7 @@ export default function DateRangePicker({
   };
 
   const handleClear = () => {
-    const clearedRange = { from: null, to: null };
+    const clearedRange = { from: undefined, to: undefined };
     setSelectedRange(clearedRange);
     setTempRange(clearedRange);
     onApply(clearedRange);
@@ -94,10 +97,18 @@ export default function DateRangePicker({
     end: endOfWeek(endOfMonth(monthStart)),
   });
 
-  const tFrom = tempRange.from ? parseISO(tempRange.from) : null;
-  const tTo = tempRange.to ? parseISO(tempRange.to) : null;
-  const sFrom = selectedRange.from ? parseISO(selectedRange.from) : null;
-  const sTo = selectedRange.to ? parseISO(selectedRange.to) : null;
+  const parseDate = (date: string | undefined) => {
+    // regex for YYYY-MM-DD format
+    if (date === undefined || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return undefined;
+    }
+    return isValid(parseISO(date)) ? parseISO(date) : undefined;
+  };
+
+  const tFrom = parseDate(tempRange.from);
+  const tTo = parseDate(tempRange.to);
+  const sFrom = parseDate(selectedRange.from);
+  const sTo = parseDate(selectedRange.to);
 
   return (
     <div ref={dropdownRef} className={styles.dropdown}>
@@ -142,7 +153,7 @@ export default function DateRangePicker({
                 onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
                 type="button"
               >
-                <ChevronLeft size="1.2vw" />
+                <ChevronLeft size="1.4rem" />
               </button>
               <span className={styles.currentMonthName}>
                 {format(currentMonth, "MMMM yyyy")}
@@ -151,7 +162,7 @@ export default function DateRangePicker({
                 onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
                 type="button"
               >
-                <ChevronRight size="1.2vw" />
+                <ChevronRight size="1.4rem" />
               </button>
             </div>
             <div className={styles.calendarGrid}>
@@ -201,7 +212,7 @@ export default function DateRangePicker({
               Cancel
             </button>
 
-            {(tempRange.from !== null || tempRange.to !== null) && (
+            {(tempRange.from || tempRange.to) && (
               <button
                 className={styles.cancelBtn}
                 onClick={handleClear}

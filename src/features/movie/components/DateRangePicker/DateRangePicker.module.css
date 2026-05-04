@@ -29,7 +29,7 @@
     border: 1px solid var(--light-gray);
     border-radius: 0.56vw;
     box-shadow: 0 0.5vw 1.5vw var(--box-shadow);
-    z-index: 1000;
+    z-index: var(--z-low);
     padding: 0.8vw;
 }
 
@@ -146,23 +146,27 @@
     border: 1px solid var(--light-gray);
 }
 
-.dropdown .applyBtn {
+.btnBase {
+    background: var(--dark-red);
     padding: 0.5vw 1vw;
     border-radius: 0.6vw;
+}
+
+.btnBase:disabled {
+    cursor: not-allowed;
+}
+
+.applyBtn {
+    composes: btnBase;
     background: var(--dark-red);
     color: white;
 }
 
-.applyBtn:disabled {
-    cursor: not-allowed;
-}
-
-.dropdown .cancelBtn {
+.cancelBtn {
+    composes: btnBase;
     background: white;
-    border: 1px solid var(--dark-red);
+    border-color: var(--dark-red);
     color: var(--dark-red);
-    padding: 0.5vw 1vw;
-    border-radius: 0.6vw;
 }
 
 .icon {

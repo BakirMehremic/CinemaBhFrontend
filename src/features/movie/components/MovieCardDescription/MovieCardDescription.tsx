@@ -13,7 +13,7 @@ export default function MovieCardDescription({
 
   return (
     <p className={styles.movieGenre}>
-      {movie.duration} MIN
+      {movie.duration_minutes} MIN
       {genre ? (
         <>
           <span className={styles.divider}></span>
