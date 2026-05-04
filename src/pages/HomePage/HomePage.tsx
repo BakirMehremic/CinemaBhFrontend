@@ -14,7 +14,7 @@ export default function HomePage() {
       ></CardSlider>
       <CardSlider
         title="Upcoming Movies"
-        seeAllLink="/showing"
+        seeAllLink="/upcoming"
         type="upcomingMovies"
       ></CardSlider>
       <CardSlider

@@ -13,6 +13,8 @@ import type { FilterShowingMoviesParams } from "../../features/movie/types/reque
 import { Building, CalendarClock, MapPin, Video } from "lucide-react";
 import NoData from "../../common/components/NoData/NoData.tsx";
 import useShowingMoviesProjectionTimes from "../../features/projection/hooks/useShowingMoviesProjectionTimes.ts";
+import LoadMoreButton from "../../common/components/LoadMoreButton/LoadMoreButton.tsx";
+import LoadingSpinner from "../../common/components/LoadingSpinner/LoadingSpinner.tsx";
 
 export default function CurrentlyShowing() {
   const [filters, setFilters] = useUrlFilters<FilterShowingMoviesParams>({
@@ -92,14 +94,7 @@ export default function CurrentlyShowing() {
     }));
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div className="error-message">An error occurred</div>;
-  if (!moviesData) return <div className="error-message">No data</div>;
-
-  const resultCount = moviesData?.total_elements;
-  const hasNextPage =
-    moviesData.page_size * (moviesData?.page_number + 1) <
-    moviesData?.total_elements;
+  const resultCount = moviesData?.total_elements ?? 0;
   const hasMovies = moviesData && moviesData.content.length > 0;
 
   return (
@@ -153,7 +148,11 @@ export default function CurrentlyShowing() {
         <div className={styles.reminderText}>
           Quick reminder that our cinema schedule is on a ten-day update cycle.
         </div>
-        {hasMovies ? (
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : isError ? (
+          <div className="error-message">An error occurred</div>
+        ) : hasMovies ? (
           moviesData.content.map((movie) => (
             <ShowingMovieCard key={movie.id} movie={movie} />
           ))
@@ -169,10 +168,8 @@ export default function CurrentlyShowing() {
           ></NoData>
         )}
       </div>
-      {hasMovies && hasNextPage && (
-        <div className={styles.loadMore} onClick={handleLoadMore}>
-          Load More
-        </div>
+      {hasMovies && moviesData.has_next && (
+        <LoadMoreButton onClick={handleLoadMore} />
       )}
     </>
   );

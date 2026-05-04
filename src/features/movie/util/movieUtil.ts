@@ -1,4 +1,7 @@
-import type { MoviePreviewResponse } from "../types/responseTypes.ts";
+import type {
+  MoviePreviewResponse,
+  MovieUpcomingResponse,
+} from "../types/responseTypes.ts";
 import type { CardItem } from "../../../common/components/CardSlider/types/cardSliderTypes.ts";
 import type {
   VenueBasicInfoResponse,
@@ -8,7 +11,7 @@ import type {
 export const isMoviePreviewResponse = (
   item: CardItem,
 ): item is MoviePreviewResponse => {
-  return (item as MoviePreviewResponse).duration !== undefined;
+  return (item as MoviePreviewResponse).synopsis !== undefined;
 };
 
 export const isVenuePreviewResponse = (
@@ -21,4 +24,10 @@ export const isVenueBasicInfoResponse = (
   item: CardItem,
 ): item is VenueBasicInfoResponse => {
   return (item as VenueBasicInfoResponse).image_url !== undefined;
+};
+
+export const isMovieUpcomingResponse = (
+  item: CardItem,
+): item is MovieUpcomingResponse => {
+  return (item as MovieUpcomingResponse).opens_date !== undefined;
 };
