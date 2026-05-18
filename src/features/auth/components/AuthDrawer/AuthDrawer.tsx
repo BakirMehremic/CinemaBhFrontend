@@ -1,8 +1,13 @@
 import { useContext } from "react";
 import styles from "./AuthDrawer.module.css";
 import { AuthContext } from "../../context/authContext.ts";
+import { ArrowLeft } from "lucide-react";
+import logo from "../../../../assets/logo.svg";
+import type { AuthDrawerState } from "../../types/authDrawerState.ts";
+import ForgotPassword from "../ForgotPassword/ForgotPassword.tsx";
+import Register from "../Register/Register.tsx";
+import Login from "../Login/LogIn.tsx";
 
-// TODO rewrite ai code
 export default function AuthDrawer() {
   const context = useContext(AuthContext);
 
@@ -10,52 +15,47 @@ export default function AuthDrawer() {
 
   const { isAuthDrawerOpen, closeAuthDrawer } = context;
 
+  const titleMap: Record<AuthDrawerState, string> = {
+    REGISTER: "Create Account",
+    LOG_IN: "Welcome Back",
+    FORGOT_PASSWORD: "Forgot Password",
+  };
+  const componentMap: Record<AuthDrawerState, React.ReactNode> = {
+    REGISTER: <Register />,
+    LOG_IN: <Login />,
+    FORGOT_PASSWORD: <ForgotPassword />,
+  };
   return (
     <>
-      {/* 1. BACKDROP */}
       <div
         className={`${styles.backdrop} ${isAuthDrawerOpen ? styles.backdropVisible : ""}`}
         onClick={closeAuthDrawer}
       />
 
-      {/* 2. DRAWER */}
       <div
         className={`${styles.drawer} ${isAuthDrawerOpen ? styles.drawerOpen : ""}`}
       >
-        <div className={styles.header}>
-          <h2 className="text-2xl font-bold">Welcome Back</h2>
-          <button onClick={closeAuthDrawer} className={styles.closeBtn}>
-            ✕
-          </button>
+        <img src={logo} alt="CinemaBh" className={styles.logoImage} />
+        <div className={styles.titleRow}>
+          <div className={styles.arrowContainer}>
+            <ArrowLeft className={styles.leftArrow} onClick={closeAuthDrawer} />
+          </div>
+          <h2 className={styles.title}>{titleMap[context.authDrawerState]}</h2>
         </div>
-
-        <form className={styles.form}>
-          <div className={styles.inputGroup}>
-            <label>Email</label>
-            <input
-              type="email"
-              className={styles.input}
-              placeholder="you@example.com"
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <label>Password</label>
-            <input type="password" className={styles.input} />
-          </div>
-          <button type="submit" className={styles.submitBtn}>
-            Log In
-          </button>
-        </form>
-
-        <div
-          style={{
-            marginTop: "1.5rem",
-            textAlign: "center",
-            fontSize: "0.875rem",
-          }}
-        >
-          Don't have an account?{" "}
-          <span style={{ color: "#2563eb", cursor: "pointer" }}>Sign Up</span>
+        <div className={styles.formContainer}>
+          {componentMap[context.authDrawerState as AuthDrawerState]}
+        </div>
+        <div className={styles.actions}>
+          <div className={styles.forgotPasswordText}>Forgot Password?</div>
+          <button className={styles.submitBtn}>Submit</button>
+        </div>
+        <div className={styles.dontHaveAccountText}>
+          Dont Have An Account?{" "}
+          <span className={styles.underlineText}>Sign Up</span>
+        </div>
+        <div className={styles.divider}>or</div>
+        <div className={styles.continueText} onClick={closeAuthDrawer}>
+          Continue without <span className={styles.boldText}>Signing In</span>
         </div>
       </div>
     </>

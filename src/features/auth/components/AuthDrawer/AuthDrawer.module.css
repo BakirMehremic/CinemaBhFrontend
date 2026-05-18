@@ -1,12 +1,11 @@
-/* Backdrop/Tint */
 .backdrop {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 100;
+    z-index: var(--z-low);
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .backdropVisible {
@@ -14,92 +13,152 @@
     visibility: visible;
 }
 
-/* The Drawer Panel */
 .drawer {
+    align-items: center;
+    width: 33%;
     position: fixed;
     top: 0;
     right: 0;
     height: 100%;
-    width: 100%; /* Mobile default */
-    background-color: white;
-    box-shadow: -10px 0 15px -3px rgba(0, 0, 0, 0.1);
-    z-index: 101;
+    background-color: var(--dark-blue);
+    z-index: var(--z-high);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
+
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
-}
-
-/* Desktop Width */
-@media (min-width: 640px) {
-    .drawer {
-        width: 400px;
-    }
+    box-sizing: border-box;
 }
 
 .drawerOpen {
     transform: translateX(0);
 }
 
-/* Internal Elements */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+.leftArrow {
+    color: var(--tinded-white);
+    width: 1.4vw;
+    height: 1.66vw;
 }
 
-.closeBtn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: #9ca3af;
+.arrowContainer {
+    margin-left: 1.2vw;
+    position: absolute;
+    left: 0;
+    background-color: var(--dark-gray);
+    width: 2.3vw;
+    height: 2.5vw;
+    border-radius: 6px;
     cursor: pointer;
-}
 
-.closeBtn:hover {
-    color: black;
-}
-
-.form {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
-.inputGroup label {
+.logoImage {
+    height: 2.22vw;
+    margin-top: 6vw;
+    margin-bottom: 1.5vw;
+    width: auto;
     display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
+    padding-left: 2.5rem;
 }
 
-.input {
+.title {
+    font-weight: 700;
+    font-size: 1.66vw;
+    color: var(--tinded-white);
+}
+
+.titleRow {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    padding: 0.5rem;
-    outline: none;
 }
 
-.input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-}
 
 .submitBtn {
-    width: 100%;
-    background-color: #2563eb;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 0.375rem;
-    font-weight: 600;
+    width: 27.7vw;
+    height: 2.8vw;
+    font-size: 1.11vw;
+    border-radius: 0.6vw;
+    margin-top: 0.6vw;
+
+    background-color: var(--dark-red);
+    color: var(--custom-white);
+    font-weight: 400;
     border: none;
     cursor: pointer;
-    transition: background 0.2s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .submitBtn:hover {
-    background-color: #1d4ed8;
+    background-color: #dc2626;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    width: 27.7vw;
+}
+
+.forgotPasswordText {
+    font-size: 1.11vw;
+    color: var(--grey-inactive);
+    align-self: flex-end;
+    margin-bottom: 0.4vw;
+}
+
+.continueText {
+    margin-top: 1vw;
+    font-size: 1.2vw;
+    color: var(--custom-white);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dontHaveAccountText {
+    margin-top: 1vw;
+    font-size: 1.11vw;
+    font-weight: 400;
+    color: var(--custom-white);
+}
+
+.underlineText {
+    text-decoration: underline;
+}
+
+.boldText {
+    font-weight: 600;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 27.7vw;
+    margin: 1vw 0;
+    font-size: 1.11vw;
+    color: var(--grey-inactive);
+}
+
+.divider::before {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--grey-inactive);
+    margin-right: 1vw;
+}
+
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--grey-inactive);
+    margin-left: 1vw;
 }

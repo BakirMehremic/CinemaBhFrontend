@@ -5,14 +5,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../../features/auth/context/authContext.ts";
 
 export default function Navbar() {
-  const isLoggedIn = true;
   const authContext = useContext(AuthContext);
 
   if (!authContext) {
     throw new Error("Navbar must be used within AuthProvider");
   }
 
-  const { openAuthDrawer } = authContext;
+  const { openAuthDrawer, currentUser } = authContext;
 
   return (
     <nav className={styles.navbar}>
@@ -26,10 +25,12 @@ export default function Navbar() {
         <Link to="/venues">Venues</Link>
       </div>
       <div className={styles.signInWrapper}>
-        {isLoggedIn && (
+        {!currentUser ? (
           <button className={styles.signIn} onClick={openAuthDrawer}>
             Sign In
           </button>
+        ) : (
+          <div>Welcome {currentUser.first_name}</div>
         )}
       </div>
     </nav>
