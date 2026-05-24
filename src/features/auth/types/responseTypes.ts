@@ -1,6 +1,4 @@
-import type { CurrentUser } from "./currentUser.ts";
-
-export type LoginResponse = {
-  csrfToken: string;
-  user: CurrentUser;
+export type ResendAtResponse<T> = {
+  payload: T;
+  resend_verification_code_at: string;
 };

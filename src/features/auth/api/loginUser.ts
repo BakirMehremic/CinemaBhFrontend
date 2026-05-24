@@ -1,10 +1,14 @@
-import type { LoginResponse } from "../types/responseTypes.ts";
 import type { LoginRequest } from "../types/requestTypes.ts";
 import { usersApi } from "../../../common/api/baseApi.ts";
+import type { CurrentUser } from "../types/currentUser.ts";
+import type { ResendAtResponse } from "../types/responseTypes.ts";
 
-export const loginUser = async (
+export default async function loginUser(
   credentials: LoginRequest,
-): Promise<LoginResponse> => {
-  const response = await usersApi.post<LoginResponse>("/login", credentials);
+): Promise<ResendAtResponse<CurrentUser>> {
+  const response = await usersApi.post<ResendAtResponse<CurrentUser>>(
+    "/login",
+    credentials,
+  );
   return response.data;
-};
+}

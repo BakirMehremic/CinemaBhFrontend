@@ -1,5 +1,6 @@
 import type { CurrentUser } from "./currentUser.ts";
 import type { AuthDrawerState } from "./authDrawerState.ts";
+import type { Dispatch, SetStateAction } from "react";
 
 export type AuthContextType = {
   isAuthDrawerOpen: boolean;
@@ -12,4 +13,7 @@ export type AuthContextType = {
   login: (user: CurrentUser) => void;
   logout: () => void;
   setAuthDrawerState: (state: AuthDrawerState) => void;
+
+  resendVerificationCodeAt: string | null;
+  setResendVerificationCodeAt: Dispatch<SetStateAction<string | null>>;
 };

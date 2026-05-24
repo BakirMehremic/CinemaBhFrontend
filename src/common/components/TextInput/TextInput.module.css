@@ -1,3 +1,7 @@
+.container {
+    margin-top: 1vw;
+}
+
 .input {
     width: 27.7vw;
     height: 2.8vw;
@@ -10,7 +14,7 @@
     align-items: center;
     width: 27.7vw;
     margin-top: 0.2vw;
-    margin-bottom: 1.1vw;
+    margin-bottom: 0.2vw;
 }
 
 .input {
@@ -32,4 +36,11 @@
     font-weight: 400;
     color: var(--custom-white);
     margin-bottom: 1vw;
+}
+
+.error {
+    margin-top: 0;
+    font-weight: 600;
+    color: var(--dark-red);
+    font-size: 1vw;
 }

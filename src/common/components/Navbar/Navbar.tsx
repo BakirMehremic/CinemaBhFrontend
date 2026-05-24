@@ -30,7 +30,9 @@ export default function Navbar() {
             Sign In
           </button>
         ) : (
-          <div>Welcome {currentUser.first_name}</div>
+          <button className={styles.signIn} onClick={authContext.logout}>
+            Log Out
+          </button>
         )}
       </div>
     </nav>

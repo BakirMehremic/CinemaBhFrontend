@@ -4,7 +4,6 @@ import { AuthContext } from "../../context/authContext.ts";
 import { ArrowLeft } from "lucide-react";
 import logo from "../../../../assets/logo.svg";
 import type { AuthDrawerState } from "../../types/authDrawerState.ts";
-import ForgotPassword from "../ForgotPassword/ForgotPassword.tsx";
 import Register from "../Register/Register.tsx";
 import Login from "../Login/LogIn.tsx";
 
@@ -18,20 +17,24 @@ export default function AuthDrawer() {
   const titleMap: Record<AuthDrawerState, string> = {
     REGISTER: "Create Account",
     LOG_IN: "Welcome Back",
-    FORGOT_PASSWORD: "Forgot Password",
+    VERIFY_ACCOUNT: "Verify Account",
+    SUCCESS: "Success! 🎉",
   };
   const componentMap: Record<AuthDrawerState, React.ReactNode> = {
     REGISTER: <Register />,
     LOG_IN: <Login />,
-    FORGOT_PASSWORD: <ForgotPassword />,
+    VERIFY_ACCOUNT: <Login />,
+    SUCCESS: null,
   };
+
+  const isLogin = context.authDrawerState === "LOG_IN";
+  const isSuccess = context.authDrawerState === "SUCCESS";
   return (
     <>
       <div
         className={`${styles.backdrop} ${isAuthDrawerOpen ? styles.backdropVisible : ""}`}
         onClick={closeAuthDrawer}
       />
-
       <div
         className={`${styles.drawer} ${isAuthDrawerOpen ? styles.drawerOpen : ""}`}
       >
@@ -45,18 +48,43 @@ export default function AuthDrawer() {
         <div className={styles.formContainer}>
           {componentMap[context.authDrawerState as AuthDrawerState]}
         </div>
-        <div className={styles.actions}>
-          <div className={styles.forgotPasswordText}>Forgot Password?</div>
-          <button className={styles.submitBtn}>Submit</button>
-        </div>
-        <div className={styles.dontHaveAccountText}>
-          Dont Have An Account?{" "}
-          <span className={styles.underlineText}>Sign Up</span>
-        </div>
-        <div className={styles.divider}>or</div>
-        <div className={styles.continueText} onClick={closeAuthDrawer}>
-          Continue without <span className={styles.boldText}>Signing In</span>
-        </div>
+        {!isSuccess && (
+          <>
+            <div className={styles.actions}>
+              <button
+                type="submit"
+                form="authForm"
+                className={styles.submitBtn}
+              >
+                Submit
+              </button>
+            </div>
+
+            <div className={styles.dontHaveAccountText}>
+              {isLogin
+                ? "Don't Have An Account? "
+                : "Already Have An Account? "}
+              <span
+                className={styles.underlineText}
+                onClick={() =>
+                  context.setAuthDrawerState(isLogin ? "REGISTER" : "LOG_IN")
+                }
+              >
+                {isLogin ? "Sign Up" : "Log In"}
+              </span>
+            </div>
+
+            {isLogin && (
+              <>
+                <div className={styles.divider}>or</div>
+                <div className={styles.continueText} onClick={closeAuthDrawer}>
+                  Continue without{" "}
+                  <span className={styles.boldText}>Signing In</span>
+                </div>
+              </>
+            )}
+          </>
+        )}
       </div>
     </>
   );

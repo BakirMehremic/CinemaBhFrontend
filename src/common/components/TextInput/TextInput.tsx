@@ -15,14 +15,26 @@ export default function TextInput({
   maxLength,
 }: TextInputProps) {
   const [inputValue, setInputValue] = useState(value);
+  const [lengthError, setLengthError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    onChange?.(e.target.value);
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    onChange?.(newValue);
+
+    if (minLength && newValue.length > 0 && newValue.length < minLength) {
+      setLengthError(`Minimum ${minLength} characters required`);
+    } else if (maxLength && newValue.length > maxLength) {
+      setLengthError(`Maximum ${maxLength} characters allowed`);
+    } else {
+      setLengthError("");
+    }
   };
 
+  const displayError = error || lengthError;
+
   return (
-    <div>
+    <div className={styles.container}>
       <label className={styles.label}>{label}</label>
       <div className={styles.inputWrapper}>
         <Icon size={20} className={styles.icon} />
@@ -33,11 +45,10 @@ export default function TextInput({
           value={inputValue}
           onChange={handleChange}
           required={required}
-          maxLength={maxLength}
-          minLength={minLength}
         />
       </div>
-      {error && <span style={{ color: "red" }}>{error}</span>}
+
+      {displayError && <div className={styles.error}>{displayError}</div>}
     </div>
   );
 }
