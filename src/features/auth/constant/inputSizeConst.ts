@@ -8,8 +8,8 @@ export const INPUT_LIMITS = {
     MAX: 48,
   },
   NAME: {
-    MIN: 100,
-    MAX: 80,
+    MIN: 2,
+    MAX: 100,
   },
   VERIFICATION_CODE: {
     MIN: 6,

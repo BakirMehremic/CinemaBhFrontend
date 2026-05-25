@@ -41,8 +41,8 @@ export default function Register() {
           type={"text"}
           required={true}
           onChange={(val) => setFirstName(val)}
-          minLength={2}
-          maxLength={254}
+          minLength={INPUT_LIMITS.NAME.MIN}
+          maxLength={INPUT_LIMITS.NAME.MAX}
         />
         <TextInput
           Icon={User}

@@ -7,7 +7,7 @@ export default async function resendVerification(
 ): Promise<ResendAtResponse<MessageResponse>> {
   const response = await usersApi.post<ResendAtResponse<MessageResponse>>(
     "/verify/resend",
-    email,
+    { email },
   );
   return response.data;
 }
