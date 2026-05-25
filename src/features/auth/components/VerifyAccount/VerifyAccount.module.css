@@ -1,0 +1,54 @@
+.infoText {
+    font-size: 1.11vw;
+    font-weight: 400;
+    color: var(--custom-white);
+    text-align: center;
+    margin-bottom: 2vw;
+}
+
+.codeContainer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 27.7vw;
+    margin: 1.5vw auto;
+}
+
+.hiddenInput {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: text;
+    z-index: var(--z-medium);
+}
+
+.codeBox {
+    width: 4vw;
+    height: 4.5vw;
+    font-size: 1.8vw;
+    text-align: center;
+    line-height: 4.5vw;
+    border-radius: 0.5vw;
+    border: 2px solid var(--grey-inactive);
+    background-color: var(--dark-gray);
+    color: var(--custom-white);
+    font-weight: 600;
+    transition: border-color 0.2s ease;
+}
+
+.resendTextContainer {
+    text-align: center;
+    font-size: 1.11vw;
+    color: var(--custom-white);
+}
+
+.resendButton {
+    width: 14vw;
+    height: 2.5vw;
+    font-size: 1.5vw;
+    background: var(--dark-red);
+    border: none;
+    color: var(--custom-white);
+    cursor: pointer;
+    border-radius: 0.5vw;
+}

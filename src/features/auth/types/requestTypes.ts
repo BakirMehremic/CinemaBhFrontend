@@ -9,3 +9,8 @@ export type RegisterRequest = {
   first_name: string;
   last_name: string;
 };
+
+export type VerifyRequest = {
+  email: string;
+  verification_code: string;
+};

@@ -1,15 +1,10 @@
 import styles from "./Navbar.module.css";
 import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../../features/auth/context/authContext.ts";
+import useAuth from "../../../features/auth/hooks/useAuth.ts";
 
 export default function Navbar() {
-  const authContext = useContext(AuthContext);
-
-  if (!authContext) {
-    throw new Error("Navbar must be used within AuthProvider");
-  }
+  const authContext = useAuth();
 
   const { openAuthDrawer, currentUser } = authContext;
 

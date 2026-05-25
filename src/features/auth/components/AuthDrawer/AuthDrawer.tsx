@@ -1,17 +1,14 @@
-import { useContext } from "react";
 import styles from "./AuthDrawer.module.css";
-import { AuthContext } from "../../context/authContext.ts";
 import { ArrowLeft } from "lucide-react";
 import logo from "../../../../assets/logo.svg";
 import type { AuthDrawerState } from "../../types/authDrawerState.ts";
 import Register from "../Register/Register.tsx";
-import Login from "../Login/LogIn.tsx";
+import Login from "../Login/Login.tsx";
+import VerifyAccount from "../VerifyAccount/VerifyAccount.tsx";
+import useAuth from "../../hooks/useAuth.ts";
 
 export default function AuthDrawer() {
-  const context = useContext(AuthContext);
-
-  if (!context) return null;
-
+  const context = useAuth();
   const { isAuthDrawerOpen, closeAuthDrawer } = context;
 
   const titleMap: Record<AuthDrawerState, string> = {
@@ -23,7 +20,7 @@ export default function AuthDrawer() {
   const componentMap: Record<AuthDrawerState, React.ReactNode> = {
     REGISTER: <Register />,
     LOG_IN: <Login />,
-    VERIFY_ACCOUNT: <Login />,
+    VERIFY_ACCOUNT: <VerifyAccount />,
     SUCCESS: null,
   };
 

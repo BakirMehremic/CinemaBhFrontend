@@ -16,4 +16,6 @@ export type AuthContextType = {
 
   resendVerificationCodeAt: string | null;
   setResendVerificationCodeAt: Dispatch<SetStateAction<string | null>>;
+  verificationEmail: string | null;
+  setVerificationEmail: Dispatch<SetStateAction<string | null>>;
 };

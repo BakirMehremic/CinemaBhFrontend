@@ -8,12 +8,14 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
   const openAuthDrawer = () => setIsAuthDrawerOpen(true);
   const closeAuthDrawer = () => setIsAuthDrawerOpen(false);
-  const [drawerState, setDrawerState] = useState<AuthDrawerState>("LOG_IN");
-
-  const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
   const [resendVerificationCodeAt, setResendVerificationCodeAt] = useState<
     string | null
   >(null);
+  const [verificationEmail, setVerificationEmail] = useState<string | null>(
+    null,
+  );
+  const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
+  const [drawerState, setDrawerState] = useState<AuthDrawerState>("LOG_IN");
 
   const login = (user: CurrentUser) => {
     setCurrentUser(user);
@@ -23,6 +25,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     setCurrentUser(null);
     setResendVerificationCodeAt(null);
+    setVerificationEmail(null);
     setDrawerState("LOG_IN");
     await logoutUser();
   };
@@ -40,6 +43,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         setAuthDrawerState: setDrawerState,
         resendVerificationCodeAt,
         setResendVerificationCodeAt,
+        verificationEmail,
+        setVerificationEmail,
       }}
     >
       {children}
