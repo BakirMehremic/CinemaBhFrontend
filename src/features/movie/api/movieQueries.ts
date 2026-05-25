@@ -1,5 +1,8 @@
 import type { PaginatedResponse } from "../../../common/types/paginationTypes.ts";
-import type { MoviePreviewResponse } from "../types/responseTypes.ts";
+import type {
+  MovieDetailsResponse,
+  MoviePreviewResponse,
+} from "../types/responseTypes.ts";
 import { moviesApi } from "../../../common/api/baseApi.ts";
 import type {
   GetMoviesPreviewsQueryParams,
@@ -27,5 +30,12 @@ export async function getMoviePreviewsPaginatedByVenueId(
       ...params,
     },
   });
+  return response.data;
+}
+
+export async function getMovieDetailsById(
+  movieId: number,
+): Promise<MovieDetailsResponse> {
+  const response = await moviesApi.get(`/details/${movieId}`);
   return response.data;
 }

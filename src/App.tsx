@@ -10,6 +10,7 @@ import VenueDetails from "./pages/VenueDetails/VenueDetails.tsx";
 import Upcoming from "./pages/Upcoming/Upcoming.tsx";
 import AuthProvider from "./features/auth/context/authProvider.tsx";
 import AuthDrawer from "./features/auth/components/AuthDrawer/AuthDrawer.tsx";
+import MovieDetails from "./pages/MovieDetails/MovieDetails.tsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/venues" element={<Venues />} />
           <Route path="/venues/:id" element={<VenueDetails />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>
