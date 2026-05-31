@@ -1,9 +1,9 @@
-import useVenueNameIdPairs from "../../features/venue/hooks/useVenueNameIdPairs.ts";
-import useCityNameIdPairs from "../../features/city/hooks/useCityNameIdPairs.ts";
-import useGenreNameIdPairs from "../../features/genre/hooks/useGenreNameIdPairs.ts";
-import useUrlFilters from "../../common/hooks/useUrlFilters.ts";
+import { useVenueNameIdPairs } from "../../features/venue/hooks/useVenueNameIdPairs.ts";
+import { useCityNameIdPairs } from "../../features/city/hooks/useCityNameIdPairs.ts";
+import { useGenreNameIdPairs } from "../../features/genre/hooks/useGenreNameIdPairs.ts";
+import { useUrlFilters } from "../../common/hooks/useUrlFilters.ts";
 import type { FilterUpcomingMoviesParams } from "../../features/movie/types/requestTypes.ts";
-import useFilteredUpcomingMoviesPaginated from "../../features/movie/hooks/useFilteredUpcomingMovies.ts";
+import { useFilteredUpcomingMoviesPaginated } from "../../features/movie/hooks/useFilteredUpcomingMovies.ts";
 import styles from "./Upcoming.module.css";
 import NameSearchBox from "../../common/components/NameSearchBox/NameSearchBox.tsx";
 import OptionsDropdown from "../../common/components/OptionsDropdown/OptionsDropdown.tsx";

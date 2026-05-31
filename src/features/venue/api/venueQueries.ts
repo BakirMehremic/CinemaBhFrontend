@@ -12,19 +12,22 @@ import type { VenueBasicInfoRequest } from "../types/requestTypes.ts";
 export async function getVenuePreviewsPaginated(
   params?: PageNumberPageSizeOptional,
 ): Promise<PaginatedResponse<VenuePreviewResponse>> {
-  const response = await venuesApi.get("/preview", {
-    params: {
-      pageNumber: params?.pageNumber,
-      pageSize: params?.pageSize,
+  const response = await venuesApi.get<PaginatedResponse<VenuePreviewResponse>>(
+    "/preview",
+    {
+      params: {
+        pageNumber: params?.pageNumber,
+        pageSize: params?.pageSize,
+      },
     },
-  });
+  );
   return response.data;
 }
 
 export async function getVenueNameIdPairs(
   cityId?: number,
 ): Promise<NameIdPair[]> {
-  const response = await venuesApi.get("/names", {
+  const response = await venuesApi.get<NameIdPair[]>("/names", {
     params: {
       cityId: cityId ?? undefined,
     },
@@ -35,14 +38,18 @@ export async function getVenueNameIdPairs(
 export async function getVenueDetailsById(
   venueId: number,
 ): Promise<VenueDetailsResponse> {
-  const response = await venuesApi.get(`/details/${venueId}`);
+  const response = await venuesApi.get<VenueDetailsResponse>(
+    `/details/${venueId}`,
+  );
   return response.data;
 }
 
 export async function getFilteredVenueBasicDetailsPaginated(
   params: VenueBasicInfoRequest,
 ): Promise<PaginatedResponse<VenueBasicInfoResponse>> {
-  const response = await venuesApi.get("/basic", {
+  const response = await venuesApi.get<
+    PaginatedResponse<VenueBasicInfoResponse>
+  >("/basic", {
     params: {
       pageNumber: params.pageNumber,
       pageSize: params.pageSize,

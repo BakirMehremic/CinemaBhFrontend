@@ -9,7 +9,7 @@ import MovieCardDescription from "../../../features/movie/components/MovieCardDe
 import placeholderImage from "../../../assets/placeholder-image.png";
 import type { CardProps } from "./types/CardProps.ts";
 import { Link } from "react-router-dom";
-import formatUpcomingDate from "../../util/dateUtils.ts";
+import { formatUpcomingDate } from "../../util/dateUtils.ts";
 
 export default function Card({ item, style }: CardProps) {
   if (isMoviePreviewResponse(item)) {

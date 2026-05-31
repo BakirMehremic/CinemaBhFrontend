@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { CurrentUser } from "../types/currentUser.ts";
-import registerUser from "../api/registerUser.ts";
+import { registerUser } from "../api/registerUser.ts";
 import type { RegisterRequest } from "../types/requestTypes.ts";
-import handleAuthError from "../util/handleAuthError.ts";
-import useAuth from "./useAuth.ts";
+import { handleAuthError } from "../util/handleAuthError.ts";
+import { useAuth } from "./useAuth.ts";
 
 export function useRegister() {
   const [isLoading, setIsLoading] = useState(false);

@@ -41,7 +41,7 @@ export type MovieDetailsResponse = {
   synopsis: string;
   directors: string[];
   writers: string[];
-  cast: string[];
+  actors: string[];
   rotten_tomatoes_rating: number;
   imdb_rating: number;
 };

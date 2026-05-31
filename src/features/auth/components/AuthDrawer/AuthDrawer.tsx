@@ -5,7 +5,7 @@ import type { AuthDrawerState } from "../../types/authDrawerState.ts";
 import Register from "../Register/Register.tsx";
 import Login from "../Login/Login.tsx";
 import VerifyAccount from "../VerifyAccount/VerifyAccount.tsx";
-import useAuth from "../../hooks/useAuth.ts";
+import { useAuth } from "../../hooks/useAuth.ts";
 
 export default function AuthDrawer() {
   const context = useAuth();

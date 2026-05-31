@@ -1,4 +1,4 @@
-export default function handleAuthError(
+export function handleAuthError(
   err: any,
   defaultFallback: string,
   setResendAt: (resendAt: string) => void,

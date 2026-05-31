@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getShowingMoviesProjectionTimes } from "../api/projectionQueries.ts";
 import type { FilterShowingMovieProjectionTimes } from "../types/requestTypes.ts";
 
-export default function useShowingMoviesProjectionTimes(
+export function useShowingMoviesProjectionTimes(
   filters: FilterShowingMovieProjectionTimes,
 ) {
   return useQuery<string[], Error>({

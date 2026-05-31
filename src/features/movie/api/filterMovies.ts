@@ -9,16 +9,14 @@ import type {
 } from "../types/responseTypes.ts";
 import { moviesApi } from "../../../common/api/baseApi.ts";
 
-export default async function getFilteredMoviesPaginated<
+export async function getFilteredMoviesPaginated<
   T extends MovieShowingResponse | MovieUpcomingResponse,
 >(
   endpoint: "/showing" | "/upcoming",
   params: FilterShowingMoviesParams | FilterUpcomingMoviesParams,
 ): Promise<PaginatedResponse<T>> {
-  const response = await moviesApi.get(endpoint, {
-    params: {
-      ...params,
-    },
+  const response = await moviesApi.get<PaginatedResponse<T>>(endpoint, {
+    params,
   });
   return response.data;
 }

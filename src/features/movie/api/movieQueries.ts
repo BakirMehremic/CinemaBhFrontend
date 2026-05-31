@@ -9,33 +9,37 @@ import type {
   MovieByVenueIdRequest,
 } from "../types/requestTypes.ts";
 
-export default async function getMoviePreviewsPaginated(
+export async function getMoviePreviewsPaginated(
   params?: GetMoviesPreviewsQueryParams,
 ): Promise<PaginatedResponse<MoviePreviewResponse>> {
-  const response = await moviesApi.get("/preview", {
-    params: {
-      showingStatus: params?.status ? params.status : "SHOWING",
-      pageNumber: params?.pageNumber ? params?.pageNumber : 0,
-      pageSize: params?.pageSize ? params?.pageSize : 3,
+  const response = await moviesApi.get<PaginatedResponse<MoviePreviewResponse>>(
+    "/preview",
+    {
+      params: {
+        showingStatus: params?.status ? params.status : "SHOWING",
+        pageNumber: params?.pageNumber ? params?.pageNumber : 0,
+        pageSize: params?.pageSize ? params?.pageSize : 3,
+      },
     },
-  });
+  );
   return response.data;
 }
 
 export async function getMoviePreviewsPaginatedByVenueId(
   params: MovieByVenueIdRequest,
 ): Promise<PaginatedResponse<MoviePreviewResponse>> {
-  const response = await moviesApi.get("/showing/venue", {
-    params: {
-      ...params,
+  const response = await moviesApi.get<PaginatedResponse<MoviePreviewResponse>>(
+    "/showing/venue",
+    {
+      params,
     },
-  });
+  );
   return response.data;
 }
 
 export async function getMovieDetailsById(
   movieId: number,
 ): Promise<MovieDetailsResponse> {
-  const response = await moviesApi.get(`/details/${movieId}`);
+  const response = await moviesApi.get<MovieDetailsResponse>(`/${movieId}`);
   return response.data;
 }

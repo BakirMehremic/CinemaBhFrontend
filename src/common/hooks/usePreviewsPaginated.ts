@@ -4,10 +4,10 @@ import type {
   SliderType,
 } from "../components/CardSlider/types/cardSliderTypes.ts";
 import type { PaginatedResponse } from "../types/paginationTypes.ts";
-import getMoviePreviewsPaginated from "../../features/movie/api/movieQueries.ts";
+import { getMoviePreviewsPaginated } from "../../features/movie/api/movieQueries.ts";
 import { getVenuePreviewsPaginated } from "../../features/venue/api/venueQueries.ts";
 
-export default function usePaginatedData(
+export function usePaginatedData(
   type: SliderType,
   pageNumber?: number,
   pageSize?: number,

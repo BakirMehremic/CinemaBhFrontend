@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { CurrentUser } from "../types/currentUser.ts";
-import loginUser from "../api/loginUser.ts";
+import { loginUser } from "../api/loginUser.ts";
 import type { LoginRequest } from "../types/requestTypes.ts";
-import handleAuthError from "../util/handleAuthError.ts";
-import useAuth from "./useAuth.ts";
+import { handleAuthError } from "../util/handleAuthError.ts";
+import { useAuth } from "./useAuth.ts";
 
 export function useLogin() {
   const [isLoading, setIsLoading] = useState(false);

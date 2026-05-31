@@ -3,7 +3,7 @@ import { Lock, Mail } from "lucide-react";
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin.ts";
 import styles from "./Login.module.css";
-import useAuth from "../../hooks/useAuth.ts";
+import { useAuth } from "../../hooks/useAuth.ts";
 import { INPUT_LIMITS } from "../../constant/inputSizeConst.ts";
 
 export default function Login() {

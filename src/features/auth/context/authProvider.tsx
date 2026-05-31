@@ -2,9 +2,9 @@ import { type ReactNode, useState } from "react";
 import { AuthContext } from "./authContext";
 import type { CurrentUser } from "../types/currentUser.ts";
 import type { AuthDrawerState } from "../types/authDrawerState.ts";
-import logoutUser from "../api/logoutUser.ts";
+import { logoutUser } from "../api/logoutUser.ts";
 
-export default function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
   const openAuthDrawer = () => setIsAuthDrawerOpen(true);
   const closeAuthDrawer = () => setIsAuthDrawerOpen(false);

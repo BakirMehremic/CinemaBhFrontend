@@ -1,11 +1,11 @@
 import styles from "./Venues.module.css";
 import NameSearchBox from "../../common/components/NameSearchBox/NameSearchBox.tsx";
-import useUrlFilters from "../../common/hooks/useUrlFilters.ts";
+import { useUrlFilters } from "../../common/hooks/useUrlFilters.ts";
 import type { VenueBasicInfoRequest } from "../../features/venue/types/requestTypes.ts";
-import useFilteredVenuesBasicInfoPaginated from "../../features/venue/hooks/useVenuesBasicInfoPaginated.ts";
+import { useFilteredVenuesBasicInfoPaginated } from "../../features/venue/hooks/useVenuesBasicInfoPaginated.ts";
 import OptionsDropdown from "../../common/components/OptionsDropdown/OptionsDropdown.tsx";
 import { Building, MapPin } from "lucide-react";
-import useCityNameIdPairs from "../../features/city/hooks/useCityNameIdPairs.ts";
+import { useCityNameIdPairs } from "../../features/city/hooks/useCityNameIdPairs.ts";
 import type { NameIdPair } from "../../common/types/responseTypes.ts";
 import Card from "../../common/components/Card/Card.tsx";
 import NoData from "../../common/components/NoData/NoData.tsx";

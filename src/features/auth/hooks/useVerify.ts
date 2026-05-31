@@ -1,8 +1,8 @@
 import { useState } from "react";
-import useAuth from "./useAuth.ts";
+import { useAuth } from "./useAuth.ts";
 import type { VerifyRequest } from "../types/requestTypes.ts";
-import verifyUser from "../api/verifyUser.ts";
-import handleAuthError from "../util/handleAuthError.ts";
+import { verifyUser } from "../api/verifyUser.ts";
+import { handleAuthError } from "../util/handleAuthError.ts";
 
 export function useVerify() {
   const [isLoading, setIsLoading] = useState(false);
