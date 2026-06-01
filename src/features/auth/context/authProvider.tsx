@@ -16,6 +16,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   );
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
   const [drawerState, setDrawerState] = useState<AuthDrawerState>("LOG_IN");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const login = (user: CurrentUser) => {
     setCurrentUser(user);
@@ -36,6 +37,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         isAuthDrawerOpen,
         openAuthDrawer,
         closeAuthDrawer,
+        isLoading,
+        setIsLoading,
         currentUser,
         authDrawerState: drawerState,
         login,

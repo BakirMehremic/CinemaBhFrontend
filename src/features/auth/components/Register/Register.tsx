@@ -18,16 +18,22 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const result = await register({
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      password,
-    });
+    context.setIsLoading(true);
 
-    if (result) {
-      context.setVerificationEmail(email);
-      context.setAuthDrawerState("VERIFY_ACCOUNT");
+    try {
+      const result = await register({
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+      });
+
+      if (result) {
+        context.setVerificationEmail(email);
+        context.setAuthDrawerState("VERIFY_ACCOUNT");
+      }
+    } finally {
+      context.setIsLoading(false);
     }
   };
 

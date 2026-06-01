@@ -7,6 +7,9 @@ export type AuthContextType = {
   openAuthDrawer: () => void;
   closeAuthDrawer: () => void;
 
+  isLoading: boolean;
+  setIsLoading: (isLoading: boolean) => void;
+
   currentUser: CurrentUser | null;
   authDrawerState: AuthDrawerState;
 

@@ -4,6 +4,7 @@ import registerUser from "../api/registerUser.ts";
 import type { RegisterRequest } from "../types/requestTypes.ts";
 import handleAuthError from "../util/handleAuthError.ts";
 import useAuth from "./useAuth.ts";
+import axios from "axios";
 
 export function useRegister() {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,13 +27,15 @@ export function useRegister() {
 
       setUser(userData);
       return userData;
-    } catch (err: any) {
-      const errorMessages = handleAuthError(
-        err,
-        "Registration failed.",
-        context.setResendVerificationCodeAt,
-      );
-      setError(errorMessages);
+    } catch (err: unknown) {
+      if (err instanceof axios.isAxiosError) {
+        const errorMessages = handleAuthError(
+          err,
+          "Registration failed.",
+          context.setResendVerificationCodeAt,
+        );
+        setError(errorMessages);
+      }
       throw err;
     } finally {
       setIsLoading(false);

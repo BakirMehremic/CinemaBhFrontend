@@ -6,10 +6,26 @@ import Register from "../Register/Register.tsx";
 import Login from "../Login/Login.tsx";
 import VerifyAccount from "../VerifyAccount/VerifyAccount.tsx";
 import useAuth from "../../hooks/useAuth.ts";
+import { useEffect } from "react";
+import LoadingSpinner from "../../../../common/components/LoadingSpinner/LoadingSpinner.tsx";
 
 export default function AuthDrawer() {
   const context = useAuth();
-  const { isAuthDrawerOpen, closeAuthDrawer } = context;
+  const { isAuthDrawerOpen, closeAuthDrawer, isLoading } = context;
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeAuthDrawer();
+      }
+    };
+
+    if (isAuthDrawerOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isAuthDrawerOpen, closeAuthDrawer]);
 
   const titleMap: Record<AuthDrawerState, string> = {
     REGISTER: "Create Account",
@@ -48,13 +64,17 @@ export default function AuthDrawer() {
         {!isSuccess && (
           <>
             <div className={styles.actions}>
-              <button
-                type="submit"
-                form="authForm"
-                className={styles.submitBtn}
-              >
-                Submit
-              </button>
+              {!isLoading ? (
+                <button
+                  type="submit"
+                  form="authForm"
+                  className={styles.submitBtn}
+                >
+                  Submit
+                </button>
+              ) : (
+                <LoadingSpinner />
+              )}
             </div>
 
             <div className={styles.dontHaveAccountText}>

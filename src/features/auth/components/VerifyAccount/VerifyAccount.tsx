@@ -55,19 +55,24 @@ export default function VerifyAccount() {
     if (e) e.preventDefault();
     if (currentCode.length !== 6 || !context.verificationEmail) return;
 
-    try {
-      const verifiedUser = await verify({
-        email: context.verificationEmail,
-        verification_code: currentCode,
-      });
-      context.login(verifiedUser);
-      setTimeout(() => {
-        context.closeAuthDrawer();
-        setCode("");
-      }, 1500);
-    } catch (err) {
+    context.setIsLoading(true);
+
+    const verifiedUser = await verify({
+      email: context.verificationEmail,
+      verification_code: currentCode,
+    });
+
+    if (!verifiedUser) {
       setCode("");
+      return;
     }
+
+    context.login(verifiedUser);
+    setTimeout(() => {
+      context.closeAuthDrawer();
+      setCode("");
+    }, 1500);
+    context.setIsLoading(false);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -115,7 +120,7 @@ export default function VerifyAccount() {
         </div>
 
         <div className={styles.resendTextContainer}>
-          {secondsLeft > 0 ? (
+          {secondsLeft > 0 && !isResending ? (
             <p>
               Resend code in <strong>{secondsLeft}s</strong>
             </p>

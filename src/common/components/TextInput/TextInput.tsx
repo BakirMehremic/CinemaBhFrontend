@@ -37,7 +37,7 @@ export default function TextInput({
     <div className={styles.container}>
       <label className={styles.label}>{label}</label>
       <div className={styles.inputWrapper}>
-        <Icon size={20} className={styles.icon} />
+        {Icon && <Icon size={20} className={styles.icon} />}
         <input
           className={styles.input}
           type={type}

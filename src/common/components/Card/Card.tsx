@@ -16,7 +16,7 @@ export default function Card({ item, style }: CardProps) {
     return (
       <div className={styles.card}>
         <img
-          src={item.cover_photo_url ? item.cover_photo_url : placeholderImage}
+          src={item.cover_photo_url ?? placeholderImage}
           alt={item.name}
           className={styles.image}
         />
@@ -58,13 +58,13 @@ export default function Card({ item, style }: CardProps) {
       </Link>
     );
   } else if (isMovieUpcomingResponse(item)) {
+    const upcomingDate = formatUpcomingDate(item.opens_date);
+
     return (
       <div className={styles.card}>
-        <div className={styles.ribbon}>
-          {formatUpcomingDate(item.opens_date)}
-        </div>
+        {upcomingDate && <div className={styles.ribbon}>{upcomingDate}</div>}
         <img
-          src={item.cover_photo_url ? item.cover_photo_url : placeholderImage}
+          src={item.cover_photo_url ?? placeholderImage}
           alt={item.name}
           className={styles.image}
         />

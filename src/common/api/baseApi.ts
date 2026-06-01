@@ -2,14 +2,13 @@ import axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 const createApi = (baseURL: string = "") => {
-  const api = axios.create({
+  return axios.create({
     baseURL: `${API_BASE_URL}${baseURL}`,
     withCredentials: true,
     withXSRFToken: true,
     xsrfCookieName: "XSRF-TOKEN",
     xsrfHeaderName: "X-XSRF-TOKEN",
   });
-  return api;
 };
 
 export const baseApi = createApi();
