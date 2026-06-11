@@ -10,8 +10,15 @@ import placeholderImage from "../../../assets/placeholder-image.png";
 import type { CardProps } from "./types/CardProps.ts";
 import { Link } from "react-router-dom";
 import formatUpcomingDate from "../../util/dateUtils.ts";
+import { useMemo } from "react";
 
 export default function Card({ item, style }: CardProps) {
+  const upcomingDate = useMemo(() => {
+    return isMovieUpcomingResponse(item)
+      ? formatUpcomingDate(item.opens_date)
+      : null;
+  }, [item]);
+
   if (isMoviePreviewResponse(item)) {
     return (
       <div className={styles.card}>
@@ -58,8 +65,6 @@ export default function Card({ item, style }: CardProps) {
       </Link>
     );
   } else if (isMovieUpcomingResponse(item)) {
-    const upcomingDate = formatUpcomingDate(item.opens_date);
-
     return (
       <div className={styles.card}>
         {upcomingDate && <div className={styles.ribbon}>{upcomingDate}</div>}

@@ -14,7 +14,7 @@ export default function TextInput({
   minLength,
   maxLength,
 }: TextInputProps) {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(value ?? "");
   const [lengthError, setLengthError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

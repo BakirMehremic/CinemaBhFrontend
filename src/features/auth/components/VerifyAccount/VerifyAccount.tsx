@@ -10,24 +10,32 @@ export default function VerifyAccount() {
   const [isResending, setIsResending] = useState(false);
 
   const context = useAuth();
-  const { verify, isLoading, error } = useVerify();
+  const { verify, error } = useVerify();
 
   useEffect(() => {
     if (!context.resendVerificationCodeAt) {
       setSecondsLeft(0);
       return;
     }
-
-    const calculateTimeLeft = () => {
+    const getSecondsLeft = () => {
       const difference =
-        new Date(context.resendVerificationCodeAt!).getTime() -
-        new Date().getTime();
-      const seconds = Math.max(0, Math.ceil(difference / 1000));
-      setSecondsLeft(seconds);
+        new Date(context.resendVerificationCodeAt!).getTime() - Date.now();
+      return Math.max(0, Math.ceil(difference / 1000));
     };
 
-    calculateTimeLeft();
-    const interval = setInterval(calculateTimeLeft, 1000);
+    const initialSeconds = getSecondsLeft();
+    setSecondsLeft(initialSeconds);
+
+    if (initialSeconds === 0) return;
+
+    const interval = setInterval(() => {
+      const currentSeconds = getSecondsLeft();
+      setSecondsLeft(currentSeconds);
+
+      if (currentSeconds === 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [context.resendVerificationCodeAt]);
@@ -87,63 +95,61 @@ export default function VerifyAccount() {
   };
 
   return (
-    <>
-      <form id="authForm" onSubmit={(e) => handleSubmit(code, e)}>
-        <p className={styles.infoText}>
-          We sent a 6-digit code to <br />
-          <strong>{context.verificationEmail || "your email address"}</strong>
-        </p>
+    <form id="authForm" onSubmit={(e) => handleSubmit(code, e)}>
+      <p className={styles.infoText}>
+        We sent a 6-digit code to <br />
+        <strong>{context.verificationEmail || "your email address"}</strong>
+      </p>
 
-        <div className={styles.codeContainer}>
-          <input
-            type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
-            maxLength={6}
-            value={code}
-            onChange={handleChange}
-            className={styles.hiddenInput}
-            disabled={isLoading || isResending}
-            autoFocus
-          />
+      <div className={styles.codeContainer}>
+        <input
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          maxLength={6}
+          value={code}
+          onChange={handleChange}
+          className={styles.hiddenInput}
+          disabled={context.isLoading || isResending}
+          autoFocus
+        />
 
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div
-              key={index}
-              className={`${styles.codeBox} ${
-                code.length === index ? styles.codeBoxFocused : ""
-              }`}
-            >
-              {code[index] || ""}
-            </div>
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div
+            key={index}
+            className={`${styles.codeBox} ${
+              code.length === index ? styles.codeBoxFocused : ""
+            }`}
+          >
+            {code[index] || ""}
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.resendTextContainer}>
+        {secondsLeft > 0 && !isResending ? (
+          <p>
+            Resend code in <strong>{secondsLeft}s</strong>
+          </p>
+        ) : (
+          <button
+            type="button"
+            onClick={handleResend}
+            disabled={isResending}
+            className={styles.resendButton}
+          >
+            {isResending ? "Sending..." : "Resend Code"}
+          </button>
+        )}
+      </div>
+
+      {error && (
+        <div className={styles.validationError}>
+          {error.map((msg, index) => (
+            <p key={index}>{msg}</p>
           ))}
         </div>
-
-        <div className={styles.resendTextContainer}>
-          {secondsLeft > 0 && !isResending ? (
-            <p>
-              Resend code in <strong>{secondsLeft}s</strong>
-            </p>
-          ) : (
-            <button
-              type="button"
-              onClick={handleResend}
-              disabled={isResending}
-              className={styles.resendButton}
-            >
-              {isResending ? "Sending..." : "Resend Code"}
-            </button>
-          )}
-        </div>
-
-        {error && (
-          <div className={styles.validationError}>
-            {error.map((msg, index) => (
-              <p key={index}>{msg}</p>
-            ))}
-          </div>
-        )}
-      </form>
-    </>
+      )}
+    </form>
   );
 }

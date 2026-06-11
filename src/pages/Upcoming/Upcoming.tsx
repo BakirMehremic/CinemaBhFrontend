@@ -32,16 +32,7 @@ export default function Upcoming() {
     data: moviesData,
     isLoading,
     isError,
-  } = useFilteredUpcomingMoviesPaginated({
-    startShowingDateFrom: filters.startShowingDateFrom,
-    startShowingDateTo: filters.startShowingDateTo,
-    cityId: filters.cityId,
-    venueId: filters.venueId,
-    genreId: filters.genreId,
-    name: filters.name,
-    pageNumber: filters.pageNumber,
-    pageSize: filters.pageSize,
-  });
+  } = useFilteredUpcomingMoviesPaginated(filters);
 
   const { data: venueData = [] } = useVenueNameIdPairs(filters.cityId);
   const { data: cityData = [] } = useCityNameIdPairs();
@@ -74,8 +65,8 @@ export default function Upcoming() {
   const handleDateRangeApply = (range: DateRangeStrings) => {
     setFilters((prev) => ({
       ...prev,
-      startShowingDateFrom: range.from ?? undefined,
-      startShowingDateTo: range.to ?? undefined,
+      startShowingDateFrom: range.from,
+      startShowingDateTo: range.to,
       pageNumber: 0,
     }));
   };

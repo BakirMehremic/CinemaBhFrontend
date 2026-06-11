@@ -7,7 +7,13 @@ export async function executeAuthRequest<T>(
   requestFn: () => Promise<T>,
   options: AuthRequestOptions,
 ): Promise<T | null> {
-  const { setIsLoading, setError, setResendAt, defaultErrorMessage } = options;
+  const {
+    setIsLoading,
+    setError,
+    setResendAt,
+    defaultErrorMessage,
+    onUnverified,
+  } = options;
 
   setIsLoading(true);
   setError(null);
@@ -16,6 +22,10 @@ export async function executeAuthRequest<T>(
     return await requestFn();
   } catch (err: unknown) {
     if (axios.isAxiosError(err)) {
+      if (err.response?.status === 403 && onUnverified) {
+        onUnverified(err);
+        return null;
+      }
       const errorResponse: AuthError = handleAuthError(
         err,
         defaultErrorMessage,

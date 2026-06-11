@@ -2,20 +2,20 @@ import { useState } from "react";
 import useAuth from "./useAuth.ts";
 import type { VerifyRequest } from "../types/requestTypes.ts";
 import verifyUser from "../api/verifyUser.ts";
+import { executeAuthRequest } from "../util/executeAuthRequest.ts";
 
 export function useVerify() {
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string[] | null>(null);
-  const auth = useAuth();
+  const context = useAuth();
 
   const verify = async (data: VerifyRequest) => {
-    return executeAuthRequest(verifyUser(data), {
-      setIsLoading,
+    return executeAuthRequest(() => verifyUser(data), {
+      setIsLoading: context.setIsLoading,
       setError,
-      setResendAt: auth.setResendVerificationCodeAt,
+      setResendAt: context.setResendVerificationCodeAt,
       defaultErrorMessage: "Verification failed. Please check your code.",
     });
   };
 
-  return { verify, isLoading, error };
+  return { verify, error };
 }

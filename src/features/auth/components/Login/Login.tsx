@@ -15,47 +15,40 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      context.setIsLoading(true);
-      const authenticatedUser = await loginApi({ email, password });
-      if (authenticatedUser) {
-        context.login(authenticatedUser);
-        setTimeout(() => {
-          context.closeAuthDrawer();
-        }, 1500);
-      }
-    } catch (err) {
-      if (err.response?.status === 403) {
-        context.setVerificationEmail(email);
-        context.setResendVerificationCodeAt(
-          err.response.data?.resend_verification_code_at,
-        );
-        context.setAuthDrawerState("VERIFY_ACCOUNT");
-      }
-    } finally {
-      context.setIsLoading(false);
+
+    context.setIsLoading(true);
+
+    const authenticatedUser = await loginApi({ email, password });
+
+    if (authenticatedUser) {
+      context.login(authenticatedUser);
+      setTimeout(() => {
+        context.closeAuthDrawer();
+      }, 1500);
     }
+
+    context.setIsLoading(false);
   };
 
   return (
     <form id="authForm" onSubmit={handleSubmit}>
       <TextInput
         Icon={Mail}
-        label={"Mail"}
-        placeholder={"johndoe@example.com"}
-        type={"text"}
+        label="Email"
+        placeholder="johndoe@example.com"
+        type="email"
         required={true}
-        onChange={(val) => setEmail(val)}
+        onChange={setEmail}
         minLength={INPUT_LIMITS.EMAIL.MIN}
         maxLength={INPUT_LIMITS.EMAIL.MAX}
       />
       <TextInput
         Icon={Lock}
-        label={"Password"}
-        placeholder={"Enter Password"}
-        type={"password"}
+        label="Password"
+        placeholder="Enter Password"
+        type="password"
         required={true}
-        onChange={(val) => setPassword(val)}
+        onChange={setPassword}
         minLength={INPUT_LIMITS.PASSWORD.MIN}
         maxLength={INPUT_LIMITS.PASSWORD.MAX}
       />
