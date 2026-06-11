@@ -18,3 +18,4 @@ export const citiesApi = createApi("/cities");
 export const genresApi = createApi("/genres");
 export const projectionsApi = createApi("/projections");
 export const usersApi = createApi("/users");
+export const authApi = createApi("/auth");
