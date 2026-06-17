@@ -78,6 +78,6 @@ export default function Card({ item, style }: CardProps) {
       </div>
     );
   } else {
-    throw new Error(`Invalid card item ${item}`);
+    throw new Error(`Invalid card item ${JSON.stringify(item)}`);
   }
 }
