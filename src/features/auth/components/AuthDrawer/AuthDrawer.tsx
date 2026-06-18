@@ -1,28 +1,29 @@
 import styles from "./AuthDrawer.module.css";
 import { ArrowLeft } from "lucide-react";
 import logo from "../../../../assets/logo.svg";
-import type { AuthDrawerState } from "../../types/authDrawerState.ts";
-import Register from "../Register/Register.tsx";
-import Login from "../Login/Login.tsx";
-import VerifyAccount from "../VerifyAccount/VerifyAccount.tsx";
-import { useAuth } from "../../hooks/useAuth.ts";
+import useAuth from "../../hooks/useAuth.ts";
+import { useEffect } from "react";
+import LoadingSpinner from "../../../../common/components/LoadingSpinner/LoadingSpinner.tsx";
+import { renderAuthForm } from "../../util/renderAuthForm.tsx";
+import { renderAuthTitle } from "../../util/renderAuthTitle.ts";
 
 export default function AuthDrawer() {
   const context = useAuth();
-  const { isAuthDrawerOpen, closeAuthDrawer } = context;
+  const { isAuthDrawerOpen, closeAuthDrawer, isLoading } = context;
 
-  const titleMap: Record<AuthDrawerState, string> = {
-    REGISTER: "Create Account",
-    LOG_IN: "Welcome Back",
-    VERIFY_ACCOUNT: "Verify Account",
-    SUCCESS: "Success! 🎉",
-  };
-  const componentMap: Record<AuthDrawerState, React.ReactNode> = {
-    REGISTER: <Register />,
-    LOG_IN: <Login />,
-    VERIFY_ACCOUNT: <VerifyAccount />,
-    SUCCESS: null,
-  };
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeAuthDrawer();
+      }
+    };
+
+    if (isAuthDrawerOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isAuthDrawerOpen, closeAuthDrawer]);
 
   const isLogin = context.authDrawerState === "LOG_IN";
   const isSuccess = context.authDrawerState === "SUCCESS";
@@ -40,21 +41,27 @@ export default function AuthDrawer() {
           <div className={styles.arrowContainer}>
             <ArrowLeft className={styles.leftArrow} onClick={closeAuthDrawer} />
           </div>
-          <h2 className={styles.title}>{titleMap[context.authDrawerState]}</h2>
+          <h2 className={styles.title}>
+            {renderAuthTitle(context.authDrawerState)}
+          </h2>
         </div>
         <div className={styles.formContainer}>
-          {componentMap[context.authDrawerState as AuthDrawerState]}
+          {renderAuthForm(context.authDrawerState)}
         </div>
         {!isSuccess && (
           <>
             <div className={styles.actions}>
-              <button
-                type="submit"
-                form="authForm"
-                className={styles.submitBtn}
-              >
-                Submit
-              </button>
+              {!isLoading ? (
+                <button
+                  type="submit"
+                  form="authForm"
+                  className={styles.submitBtn}
+                >
+                  Submit
+                </button>
+              ) : (
+                <LoadingSpinner />
+              )}
             </div>
 
             <div className={styles.dontHaveAccountText}>
@@ -70,16 +77,13 @@ export default function AuthDrawer() {
                 {isLogin ? "Sign Up" : "Log In"}
               </span>
             </div>
-
-            {isLogin && (
-              <>
-                <div className={styles.divider}>or</div>
-                <div className={styles.continueText} onClick={closeAuthDrawer}>
-                  Continue without{" "}
-                  <span className={styles.boldText}>Signing In</span>
-                </div>
-              </>
-            )}
+            <>
+              <div className={styles.divider}>or</div>
+              <div className={styles.continueText} onClick={closeAuthDrawer}>
+                Continue without{" "}
+                <span className={styles.boldText}>Signing In</span>
+              </div>
+            </>
           </>
         )}
       </div>

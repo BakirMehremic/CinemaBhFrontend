@@ -1,22 +1,26 @@
-export function handleAuthError(
+import type { AuthError } from "../types/authErrorTypes.ts";
+
+export default function handleAuthError(
   err: any,
   defaultFallback: string,
-  setResendAt: (resendAt: string) => void,
-): string[] {
+): AuthError {
   const rawErrorData = err.response?.data;
+  const resendAt = rawErrorData?.resend_verification_code_at;
 
-  if (rawErrorData?.resend_verification_code_at) {
-    setResendAt(rawErrorData.resend_verification_code_at);
+  if (!rawErrorData) {
+    return { errors: [defaultFallback], resendAt };
   }
-  if (!rawErrorData) return [defaultFallback];
 
   if (Array.isArray(rawErrorData)) {
-    return rawErrorData.map((item) => item.message || "Validation error");
+    return {
+      errors: rawErrorData.map((item) => item.message || "Validation error"),
+      resendAt,
+    };
   }
 
   if (rawErrorData.message) {
-    return [rawErrorData.message];
+    return { errors: [rawErrorData.message], resendAt };
   }
 
-  return [defaultFallback];
+  return { errors: [defaultFallback], resendAt };
 }

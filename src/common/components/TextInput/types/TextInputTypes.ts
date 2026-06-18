@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 
 export type TextInputProps = {
-  Icon: LucideIcon;
+  Icon?: LucideIcon;
   label: string;
   placeholder: string;
   value?: string;

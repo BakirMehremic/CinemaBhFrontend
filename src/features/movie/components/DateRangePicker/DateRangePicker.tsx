@@ -59,7 +59,7 @@ export default function DateRangePicker({
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isOpen]);
 
   const handleDateClick = (day: Date) => {
     if (isBefore(day, tomorrow)) return;
@@ -171,7 +171,7 @@ export default function DateRangePicker({
                   {d}
                 </div>
               ))}
-              {calendarDays.map((day, idx) => {
+              {calendarDays.map((day) => {
                 const isSel =
                   (tFrom && isSameDay(day, tFrom)) ||
                   (tTo && isSameDay(day, tTo));
@@ -183,10 +183,11 @@ export default function DateRangePicker({
                 const isEnd = tTo && isSameDay(day, tTo);
                 const isSingle = isStart && isEnd;
                 const isDisabled = isBefore(day, tomorrow);
+                const dateKey = format(day, "yyyy-MM-dd");
 
                 return (
                   <div
-                    key={idx}
+                    key={dateKey}
                     className={`
                     ${styles.day}
                     ${isSel ? styles.selectedDay : ""}

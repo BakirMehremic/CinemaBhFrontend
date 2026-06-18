@@ -9,14 +9,21 @@ import MovieCardDescription from "../../../features/movie/components/MovieCardDe
 import placeholderImage from "../../../assets/placeholder-image.png";
 import type { CardProps } from "./types/CardProps.ts";
 import { Link } from "react-router-dom";
-import { formatUpcomingDate } from "../../util/dateUtils.ts";
+import formatUpcomingDate from "../../util/dateUtils.ts";
+import { useMemo } from "react";
 
 export default function Card({ item, style }: CardProps) {
+  const upcomingDate = useMemo(() => {
+    return isMovieUpcomingResponse(item)
+      ? formatUpcomingDate(item.opens_date)
+      : null;
+  }, [item]);
+
   if (isMoviePreviewResponse(item)) {
     return (
       <div className={styles.card}>
         <img
-          src={item.cover_photo_url ? item.cover_photo_url : placeholderImage}
+          src={item.cover_photo_url ?? placeholderImage}
           alt={item.name}
           className={styles.image}
         />
@@ -60,11 +67,9 @@ export default function Card({ item, style }: CardProps) {
   } else if (isMovieUpcomingResponse(item)) {
     return (
       <div className={styles.card}>
-        <div className={styles.ribbon}>
-          {formatUpcomingDate(item.opens_date)}
-        </div>
+        {upcomingDate && <div className={styles.ribbon}>{upcomingDate}</div>}
         <img
-          src={item.cover_photo_url ? item.cover_photo_url : placeholderImage}
+          src={item.cover_photo_url ?? placeholderImage}
           alt={item.name}
           className={styles.image}
         />
@@ -73,6 +78,6 @@ export default function Card({ item, style }: CardProps) {
       </div>
     );
   } else {
-    throw new Error(`Invalid card item ${item}`);
+    throw new Error(`Invalid card item ${JSON.stringify(item)}`);
   }
 }

@@ -1,13 +1,13 @@
-import { usersApi } from "../../../common/api/baseApi.ts";
+import { authApi } from "../../../common/api/baseApi.ts";
 import type { ResendAtResponse } from "../types/responseTypes.ts";
 import type { MessageResponse } from "../../../common/types/responseTypes.ts";
 
 export async function resendVerification(
   email: string,
 ): Promise<ResendAtResponse<MessageResponse>> {
-  const response = await usersApi.post<ResendAtResponse<MessageResponse>>(
+  const response = await authApi.post<ResendAtResponse<MessageResponse>>(
     "/verify/resend",
-    email,
+    { email },
   );
   return response.data;
 }

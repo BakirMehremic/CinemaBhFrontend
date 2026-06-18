@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useCallback, useState } from "react";
 import { AuthContext } from "./authContext";
 import type { CurrentUser } from "../types/currentUser.ts";
 import type { AuthDrawerState } from "../types/authDrawerState.ts";
@@ -6,8 +6,13 @@ import { logoutUser } from "../api/logoutUser.ts";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
-  const openAuthDrawer = () => setIsAuthDrawerOpen(true);
-  const closeAuthDrawer = () => setIsAuthDrawerOpen(false);
+  const openAuthDrawer = useCallback(() => {
+    setIsAuthDrawerOpen(true);
+  }, []);
+
+  const closeAuthDrawer = useCallback(() => {
+    setIsAuthDrawerOpen(false);
+  }, []);
   const [resendVerificationCodeAt, setResendVerificationCodeAt] = useState<
     string | null
   >(null);
@@ -16,6 +21,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
   const [drawerState, setDrawerState] = useState<AuthDrawerState>("LOG_IN");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const login = (user: CurrentUser) => {
     setCurrentUser(user);
@@ -23,11 +29,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async () => {
+    await logoutUser();
     setCurrentUser(null);
     setResendVerificationCodeAt(null);
     setVerificationEmail(null);
     setDrawerState("LOG_IN");
-    await logoutUser();
   };
 
   return (
@@ -36,6 +42,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isAuthDrawerOpen,
         openAuthDrawer,
         closeAuthDrawer,
+        isLoading,
+        setIsLoading,
         currentUser,
         authDrawerState: drawerState,
         login,
