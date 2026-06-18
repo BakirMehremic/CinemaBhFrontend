@@ -18,6 +18,8 @@ export default function MovieDetails() {
   const MAX_IMAGES_DISPLAYED = 4;
   const imagesToDisplay = data.images?.slice(0, MAX_IMAGES_DISPLAYED) || [];
 
+  const FALLBACK_IMAGE_URL = "../../assets/placeholder-image.png"
+
   return (
     <div className={styles.marginContainer}>
       <h1 className={styles.title}>Movie Details</h1>
@@ -32,7 +34,7 @@ export default function MovieDetails() {
           />
         ) : (
           <img
-            src={data.images[0]}
+            src={data.images[0] || FALLBACK_IMAGE_URL }
             alt={`Trailer unavailable`}
             className={styles.trailer}
           />
@@ -68,10 +70,10 @@ export default function MovieDetails() {
       </div>
       <div className={styles.description}>{data.synopsis}</div>
       <div className={styles.cast}>
-        Director: <span className={styles.castBold}>{data.directors}</span>
+        Director: <span className={styles.castBold}>{data.directors.join(", ")}</span>
       </div>
       <div className={styles.cast}>
-        Writers: <span className={styles.castBold}>{data.writers}</span>
+        Writers: <span className={styles.castBold}>{data.writers.join(", ")}</span>
       </div>
       <div className={styles.subtitle}>
         <div className={styles.dividerBold}>|</div>

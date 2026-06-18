@@ -16,9 +16,9 @@ export async function getMoviePreviewsPaginated(
     "/preview",
     {
       params: {
-        showingStatus: params?.status ? params.status : "SHOWING",
-        pageNumber: params?.pageNumber ? params?.pageNumber : 0,
-        pageSize: params?.pageSize ? params?.pageSize : 3,
+        showingStatus: params?.status ?? "SHOWING",
+        pageNumber: params?.pageNumber ?? 0,
+        pageSize: params?.pageSize ?? 3,
       },
     },
   );
