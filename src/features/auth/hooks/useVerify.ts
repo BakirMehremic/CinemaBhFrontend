@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useAuth from "./useAuth.ts";
+import { useAuth } from "./useAuth.ts";
 import type { VerifyRequest } from "../types/requestTypes.ts";
 import verifyUser from "../api/verifyUser.ts";
 import { executeAuthRequest } from "../util/executeAuthRequest.ts";

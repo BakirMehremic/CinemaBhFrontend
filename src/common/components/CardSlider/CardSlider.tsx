@@ -4,7 +4,7 @@ import CardSliderHeader from "../CardSliderHeader/CardSliderHeader.tsx";
 import type { CardItem, CardSliderProps } from "./types/cardSliderTypes.ts";
 import Card from "../Card/Card.tsx";
 import { useState } from "react";
-import usePaginatedData from "../../hooks/usePreviewsPaginated.ts";
+import { usePaginatedData } from "../../hooks/usePreviewsPaginated.ts";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner.tsx";
 
 export default function CardSlider({

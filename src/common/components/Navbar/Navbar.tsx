@@ -1,7 +1,7 @@
 import styles from "./Navbar.module.css";
 import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
-import useAuth from "../../../features/auth/hooks/useAuth.ts";
+import { useAuth } from "../../../features/auth/hooks/useAuth.ts";
 
 export default function Navbar() {
   const authContext = useAuth();

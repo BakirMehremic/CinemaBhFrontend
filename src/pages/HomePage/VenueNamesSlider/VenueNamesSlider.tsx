@@ -1,5 +1,5 @@
 import styles from "./VenueNamesSlider.module.css";
-import useVenueNameIdPairs from "../../../features/venue/hooks/useVenueNameIdPairs.ts";
+import { useVenueNameIdPairs } from "../../../features/venue/hooks/useVenueNameIdPairs.ts";
 import LoadingSpinner from "../../../common/components/LoadingSpinner/LoadingSpinner.tsx";
 
 export default function VenueNamesSlider() {

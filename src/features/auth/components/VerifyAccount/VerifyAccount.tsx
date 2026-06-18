@@ -1,8 +1,8 @@
 import { type ChangeEvent, useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth.ts";
+import { useAuth } from "../../hooks/useAuth.ts";
 import { useVerify } from "../../hooks/useVerify.ts";
 import styles from "./VerifyAccount.module.css";
-import resendVerification from "../../api/resendVerification.ts";
+import { resendVerification } from "../../api/resendVerification.ts";
 
 export default function VerifyAccount() {
   const [code, setCode] = useState("");

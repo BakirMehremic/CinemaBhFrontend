@@ -1,8 +1,8 @@
 import styles from "./VenueDetails.module.css";
 import { useParams } from "react-router-dom";
-import useVenueDetailsById from "../../features/venue/hooks/useVenueDetails.ts";
+import { useVenueDetailsById } from "../../features/venue/hooks/useVenueDetails.ts";
 import { Building, MapPin, Phone } from "lucide-react";
-import useVenueShowingMovies from "../../features/movie/hooks/useVenueShowingMovies.ts";
+import { useVenueShowingMovies } from "../../features/movie/hooks/useVenueShowingMovies.ts";
 import { useState } from "react";
 import type { CardItem } from "../../common/components/CardSlider/types/cardSliderTypes.ts";
 import Card from "../../common/components/Card/Card.tsx";
