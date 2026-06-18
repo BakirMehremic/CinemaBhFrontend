@@ -1,0 +1,158 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: var(--z-low);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.backdropVisible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.drawer {
+    align-items: center;
+    width: 33%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: var(--dark-blue);
+    z-index: var(--z-high);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.drawerOpen {
+    transform: translateX(0);
+}
+
+.leftArrow {
+    color: var(--tinded-white);
+    width: 1.4vw;
+    height: 1.66vw;
+}
+
+.arrowContainer {
+    margin-left: 1.2vw;
+    position: absolute;
+    left: 0;
+    background-color: var(--dark-gray);
+    width: 2.3vw;
+    height: 2.5vw;
+    border-radius: 6px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoImage {
+    height: 2.22vw;
+    margin-top: 6vw;
+    margin-bottom: 1.5vw;
+    width: auto;
+    display: block;
+    padding-left: 2.5rem;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 1.66vw;
+    color: var(--tinded-white);
+}
+
+.titleRow {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.submitBtn {
+    width: 27.7vw;
+    height: 2.8vw;
+    font-size: 1.11vw;
+    border-radius: 0.6vw;
+    margin-top: 0.6vw;
+
+    background-color: var(--dark-red);
+    color: var(--custom-white);
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.submitBtn:hover {
+    background-color: #dc2626;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    width: 27.7vw;
+}
+
+.continueText {
+    margin-top: 1vw;
+    font-size: 1.2vw;
+    color: var(--custom-white);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dontHaveAccountText {
+    margin-top: 1vw;
+    font-size: 1.11vw;
+    font-weight: 400;
+    color: var(--custom-white);
+}
+
+.underlineText {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.boldText {
+    font-weight: 600;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 27.7vw;
+    margin: 1vw 0;
+    font-size: 1.11vw;
+    color: var(--grey-inactive);
+}
+
+.divider::before {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--grey-inactive);
+    margin-right: 1vw;
+}
+
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--grey-inactive);
+    margin-left: 1vw;
+}

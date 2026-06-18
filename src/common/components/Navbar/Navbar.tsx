@@ -1,9 +1,13 @@
 import styles from "./Navbar.module.css";
 import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import useAuth from "../../../features/auth/hooks/useAuth.ts";
 
 export default function Navbar() {
-  const isLoggedIn = false;
+  const authContext = useAuth();
+
+  const { openAuthDrawer, currentUser } = authContext;
+
   return (
     <nav className={styles.navbar}>
       <Link to="/" className={styles.logo}>
@@ -16,7 +20,15 @@ export default function Navbar() {
         <Link to="/venues">Venues</Link>
       </div>
       <div className={styles.signInWrapper}>
-        {isLoggedIn && <button className={styles.signIn}>Sign In</button>}
+        {!currentUser ? (
+          <button className={styles.signIn} onClick={openAuthDrawer}>
+            Sign In
+          </button>
+        ) : (
+          <button className={styles.signIn} onClick={authContext.logout}>
+            Log Out
+          </button>
+        )}
       </div>
     </nav>
   );

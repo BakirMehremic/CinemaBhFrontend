@@ -1,0 +1,46 @@
+.container {
+    margin-top: 1vw;
+}
+
+.input {
+    width: 27.7vw;
+    height: 2.8vw;
+    font-size: 1.11vw;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 27.7vw;
+    margin-top: 0.2vw;
+    margin-bottom: 0.2vw;
+}
+
+.input {
+    width: 100%;
+    font-size: 1vw;
+    padding-left: 2.5vw;
+    box-sizing: border-box;
+}
+
+.icon {
+    position: absolute;
+    left: 0.8vw;
+    color: var(--dark-red);
+    pointer-events: none;
+}
+
+.label {
+    font-size: 1.11vw;
+    font-weight: 400;
+    color: var(--custom-white);
+    margin-bottom: 1vw;
+}
+
+.error {
+    margin-top: 0;
+    font-weight: 600;
+    color: var(--dark-red);
+    font-size: 1vw;
+}

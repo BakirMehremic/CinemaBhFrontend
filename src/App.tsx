@@ -1,18 +1,20 @@
 import Navbar from "./common/components/Navbar/Navbar";
 import HomePage from "./pages/HomePage/HomePage";
 import Footer from "./common/components/Footer/Footer";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Pricing from "./pages/Pricing/Pricing";
 import CurrentlyShowing from "./pages/CurrentlyShowing/CurrentlyShowing.tsx";
 import Venues from "./pages/Venues/Venues.tsx";
 import VenueDetails from "./pages/VenueDetails/VenueDetails.tsx";
 import Upcoming from "./pages/Upcoming/Upcoming.tsx";
+import AuthDrawer from "./features/auth/components/AuthDrawer/AuthDrawer.tsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
+      <AuthDrawer />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutUs />} />
@@ -23,7 +25,7 @@ function App() {
         <Route path="/venues/:id" element={<VenueDetails />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 

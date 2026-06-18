@@ -1,9 +1,5 @@
 import styles from "./LoadingSpinner.module.css";
-
-export type LoadingSpinnerProps = {
-  width?: string;
-  height?: string;
-};
+import type { LoadingSpinnerProps } from "./types/loadingSpinnerProps.ts";
 
 export default function LoadingSpinner({
   width = "10vw",
