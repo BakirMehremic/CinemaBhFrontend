@@ -4,15 +4,15 @@ import OptionsDropdown from "../../common/components/OptionsDropdown/OptionsDrop
 import type { NameIdPair } from "../../common/types/responseTypes.ts";
 import DatePicker from "../../features/movie/components/DatePicker/DatePicker.tsx";
 import ShowingMovieCard from "../../features/movie/components/ShowingMovieCard/ShowingMovieCard.tsx";
-import useFilteredShowingMoviesPaginated from "../../features/movie/hooks/useFilteredShowingMovies.ts";
-import useCityNameIdPairs from "../../features/city/hooks/useCityNameIdPairs.ts";
-import useVenueNameIdPairs from "../../features/venue/hooks/useVenueNameIdPairs.ts";
-import useGenreNameIdPairs from "../../features/genre/hooks/useGenreNameIdPairs.ts";
-import useUrlFilters from "../../common/hooks/useUrlFilters.ts";
+import { useFilteredShowingMoviesPaginated } from "../../features/movie/hooks/useFilteredShowingMovies.ts";
+import { useCityNameIdPairs } from "../../features/city/hooks/useCityNameIdPairs.ts";
+import { useVenueNameIdPairs } from "../../features/venue/hooks/useVenueNameIdPairs.ts";
+import { useGenreNameIdPairs } from "../../features/genre/hooks/useGenreNameIdPairs.ts";
+import { useUrlFilters } from "../../common/hooks/useUrlFilters.ts";
 import type { FilterShowingMoviesParams } from "../../features/movie/types/requestTypes.ts";
 import { Building, CalendarClock, MapPin, Video } from "lucide-react";
 import NoData from "../../common/components/NoData/NoData.tsx";
-import useShowingMoviesProjectionTimes from "../../features/projection/hooks/useShowingMoviesProjectionTimes.ts";
+import { useShowingMoviesProjectionTimes } from "../../features/projection/hooks/useShowingMoviesProjectionTimes.ts";
 import LoadMoreButton from "../../common/components/LoadMoreButton/LoadMoreButton.tsx";
 import LoadingSpinner from "../../common/components/LoadingSpinner/LoadingSpinner.tsx";
 

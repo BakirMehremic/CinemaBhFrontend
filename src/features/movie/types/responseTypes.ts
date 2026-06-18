@@ -27,3 +27,21 @@ export type MovieUpcomingResponse = {
   opens_date: string;
   genres: string[];
 };
+
+export type MovieDetailsResponse = {
+  name: string;
+  trailer_link: string;
+  images: string[];
+  pg_rating: string;
+  language: string;
+  duration_minutes: number;
+  start_showing_date: string;
+  end_showing_date: string;
+  genres: string[];
+  synopsis: string;
+  directors: string[];
+  writers: string[];
+  actors: string[];
+  rotten_tomatoes_rating: number;
+  imdb_rating: number;
+};

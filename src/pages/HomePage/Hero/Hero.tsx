@@ -1,6 +1,6 @@
 import styles from "./Hero.module.css";
 import { useEffect, useState } from "react";
-import useHeroSectionMovies from "../../../features/movie/hooks/useHeroSectionMovies.ts";
+import { useHeroSectionMovies } from "../../../features/movie/hooks/useHeroSectionMovies.ts";
 import placeholderImage from "../../../assets/avatar-image.jpg";
 import LoadingSpinner from "../../../common/components/LoadingSpinner/LoadingSpinner.tsx";
 

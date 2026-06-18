@@ -4,7 +4,7 @@ import type { FilterShowingMovieProjectionTimes } from "../types/requestTypes.ts
 export async function getShowingMoviesProjectionTimes(
   filters?: FilterShowingMovieProjectionTimes,
 ): Promise<string[]> {
-  const response = await projectionsApi.get("/showing/times", {
+  const response = await projectionsApi.get<string[]>("/showing/times", {
     params: filters,
   });
   return response.data;

@@ -1,6 +1,6 @@
 import { MILLISECONDS_IN_DAY } from "../constants/timeConstants.ts";
 
-export default function formatUpcomingDate(dateStr: string) {
+export function formatUpcomingDate(dateStr: string) {
   const date = new Date(dateStr);
 
   if (Number.isNaN(date.getDay())) {

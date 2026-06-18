@@ -1,0 +1,143 @@
+.marginContainer {
+    margin-left: 4vw;
+}
+
+.title {
+    margin-top: 3vw;
+    color: var(--dark-blue);
+}
+
+.trailer {
+    width: 43vw;
+    height: 24.3vw;
+    border-radius: 1vw 0 0 1vw;
+    overflow: hidden;
+    border: none;
+}
+
+.mediaContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 1vw;
+    margin-bottom: 2vw;
+}
+
+.imageGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 21vw);
+    gap: 1vw;
+}
+
+.movieImage {
+    width: 21vw;
+    height: 11.66vw;
+    display: block;
+}
+
+.name {
+    color: var(--dark-blue);
+    font-weight: 700;
+    font-size: 2.22vw;
+    margin-bottom: 0.5vw;
+}
+
+.description {
+    font-weight: 400;
+    font-size: 1.11vw;
+    color: var(--dark-gray);
+    display: flex;
+    align-items: center;
+}
+
+.divider {
+    margin: 0 0.83vw;
+    color: var(--dark-red);
+    font-weight: 300;
+    font-size: 1.66vw;
+}
+
+.dividerBold {
+    composes: divider;
+    margin-left: 0;
+    font-weight: 500;
+    font-size: 2vw;
+}
+
+.genresContainer {
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1vw;
+}
+
+.genreBadge {
+    height: 1.8vw;
+    padding: 0.15vw 0.55vw;
+    font-size: 1vw;
+    line-height: 1.38vw;
+    font-weight: 400;
+    color: var(--dark-gray);
+
+    background-color: var(--light-gray);
+    border-radius: 0.5vw;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cast {
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    font-size: 1.11vw;
+    color: var(--dark-gray);
+}
+
+.castBold {
+    composes: cast;
+    font-weight: 600;
+}
+
+.subtitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.4vw;
+    color: var(--medium-gray);
+    font-weight: 700;
+    margin-bottom: 1vw;
+}
+
+.castMemberName {
+    font-size: 1vw;
+    color: var(--dark-blue);
+}
+
+.castGrid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.5vw 2vw;
+    margin-top: 0.5vw;
+    margin-bottom: 1vw;
+}
+
+.ratingBadge {
+    padding: 1vw;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid var(--light-gray);
+    background-color: var(--custom-white);
+    font-size: 1.2vw;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-right: 1vw;
+}
+
+.star {
+    color: var(--dark-red);
+    fill: none;
+    stroke-width: 4px;
+}

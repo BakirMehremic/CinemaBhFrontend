@@ -9,6 +9,7 @@ import Venues from "./pages/Venues/Venues.tsx";
 import VenueDetails from "./pages/VenueDetails/VenueDetails.tsx";
 import Upcoming from "./pages/Upcoming/Upcoming.tsx";
 import AuthDrawer from "./features/auth/components/AuthDrawer/AuthDrawer.tsx";
+import MovieDetails from "./pages/MovieDetails/MovieDetails.tsx";
 
 function App() {
   return (

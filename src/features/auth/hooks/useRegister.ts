@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { CurrentUser } from "../types/currentUser.ts";
-import registerUser from "../api/registerUser.ts";
+import { registerUser } from "../api/registerUser.ts";
 import type { RegisterRequest } from "../types/requestTypes.ts";
 import useAuth from "./useAuth.ts";
 import { executeAuthRequest } from "../util/executeAuthRequest.ts";

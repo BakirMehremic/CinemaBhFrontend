@@ -4,7 +4,7 @@ import { useCallback, useMemo } from "react";
 type FilterValue = string | number | boolean | undefined;
 type FilterParams = Record<string, FilterValue>;
 
-export default function useUrlFilters<T extends FilterParams>(
+export function useUrlFilters<T extends FilterParams>(
   defaultFilters: T,
 ): [T, (updater: T | ((prev: T) => T)) => void] {
   const [searchParams, setSearchParams] = useSearchParams();
